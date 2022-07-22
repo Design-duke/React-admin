@@ -1,0 +1,23 @@
+.box {
+  display: flex;
+  justify-content: space-between;
+  .title {
+    width: 200px;
+  }
+  .rightButton {
+    .rightButtonLeft {
+      margin-right: 5px;
+    }
+  }
+}
+h1 {
+  position: relative;
+  color: blue;
+}
+h1:before {
+  content: attr(text);
+  position: absolute;
+  z-index: 10;
+  color: orange;
+  -webkit-mask: linear-gradient(to right, transparent, orange);
+}
