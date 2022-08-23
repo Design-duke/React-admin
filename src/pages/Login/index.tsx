@@ -10,7 +10,8 @@ function Login() {
   };
 
   return (
-    <div className="box">
+    <div className="container">
+      <h2>西湖区最具影响力的 Web 设计规范</h2>
       <Form
         name="normal_login"
         className="login-form"
@@ -22,6 +23,7 @@ function Login() {
           rules={[{ required: true, message: "Please input your Username!" }]}
         >
           <Input
+            size="large"
             prefix={<UserOutlined className="site-form-item-icon" />}
             placeholder="Username"
           />
@@ -30,30 +32,22 @@ function Login() {
           name="password"
           rules={[{ required: true, message: "Please input your Password!" }]}
         >
-          <Input
+          <Input.Password
+            size="large"
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
             placeholder="Password"
           />
         </Form.Item>
         <Form.Item>
-          <Form.Item name="remember" valuePropName="checked" noStyle>
-            <Checkbox>Remember me</Checkbox>
-          </Form.Item>
-
-          <a className="login-form-forgot" href="">
-            Forgot password
-          </a>
-        </Form.Item>
-        <Form.Item>
           <Button
+            size="large"
             type="primary"
             htmlType="submit"
             className="login-form-button"
           >
-            Log in
+            登录
           </Button>
-          Or <a href="">register now!</a>
         </Form.Item>
       </Form>
     </div>
