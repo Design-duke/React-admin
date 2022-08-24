@@ -6,6 +6,7 @@ function Login() {
   const navigate = useNavigate();
   const onFinish = (values: any) => {
     console.log("Received values of form: ", values);
+    localStorage.setItem("Mm", "login");
     navigate("/about");
   };
 
