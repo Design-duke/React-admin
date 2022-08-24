@@ -1,8 +1,9 @@
 import { Outlet } from "react-router-dom";
-import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
-import React, { useState } from "react";
+import { useState } from "react";
+import Collapsed from "./Collapsed/index";
 import Items from "./Menu/index";
+import "./index.less";
 const { Header, Sider, Content } = Layout;
 function App() {
   const [collapsed, setCollapsed] = useState(false);
@@ -19,17 +20,8 @@ function App() {
           />
         </Sider>
         <Layout className="site-layout">
-          <Header
-            className="site-layout-background "
-            style={{ padding: "0 24px" }}
-          >
-            {React.createElement(
-              collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
-              {
-                className: "trigger",
-                onClick: () => setCollapsed(!collapsed),
-              }
-            )}
+          <Header className="site-layout-background" style={{ padding: 0 }}>
+            <Collapsed collapsed={collapsed} setCollapsed={setCollapsed} />
           </Header>
           <Content
             className="site-layout-background"
@@ -38,16 +30,6 @@ function App() {
               minHeight: 280,
             }}
           >
-            {/* <Routes>
-              {routers.map((item: any) => (
-                <Route
-                  caseSensitive
-                  path={item.path}
-                  element={item.element}
-                  key={item.path}
-                ></Route>
-              ))}
-            </Routes> */}
             <Outlet />
           </Content>
         </Layout>

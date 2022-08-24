@@ -1,5 +1,8 @@
 //import ReactDOM from "react-dom/client";
 import ReactDOM from "react-dom";
+import { ConfigProvider } from "antd";
+import enUS from "antd/es/locale/en_US";
+import zhCN from "antd/es/locale/zh_CN";
 import { store } from "./redux/index";
 import { Provider } from "react-redux";
 import App from "./App";
@@ -11,8 +14,10 @@ import "./index.less";
 //   </Provider>
 // );
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <ConfigProvider locale={zhCN}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </ConfigProvider>,
   document.getElementById("root")
 );
