@@ -1,7 +1,7 @@
 import { Navigate, useRoutes } from "react-router-dom";
 import Home from "../layout/index";
 import About from "../pages/about/index";
-import Task from "../pages/task/index";
+import Table from "../pages/table/index";
 import Count from "../pages/count/index";
 import Result from "../pages/404";
 import Login from "../pages/Login/index";
@@ -45,7 +45,7 @@ const routers: any = [
         auth: true,
         element: (
           <Auth>
-            <Task />
+            <Table />
           </Auth>
         ),
       },

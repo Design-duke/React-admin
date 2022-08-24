@@ -1,10 +1,10 @@
 import { Table, Button, message, Popconfirm } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import ModelForm from "./Model";
-import { useRef } from "react";
-type Props = {};
+import ModelForm from "./Pop-ups/index";
+import SearchForm from "./searchForm/index";
+import { useEffect, useRef, useState } from "react";
 
-function Task({}: Props) {
+function Task() {
   const ModelFor: any = useRef(null);
   const confirm = (e: any) => {
     console.log(e);
@@ -17,21 +17,13 @@ function Task({}: Props) {
   const handleEdit = (text: any, record: any, index: any) => {
     ModelFor.current.showModal(text);
   };
-  const dataSource = [
-    {
-      key: "1",
-      name: "胡彦斌",
-      age: 32,
-      address: "西湖区湖底公园1号",
-    },
-    {
-      key: "2",
-      name: "胡彦祖",
-      age: 42,
-      address: "西湖区湖底公园1号",
-    },
-  ];
-
+  interface DataType {
+    key: number;
+    name: string;
+    age: number;
+    address: string;
+  }
+  const [dataSource, setdataSource] = useState<DataType[]>([]);
   const columns = [
     {
       title: "姓名",
@@ -72,9 +64,29 @@ function Task({}: Props) {
       ),
     },
   ];
+  const request = () => {
+    setdataSource(() => [
+      {
+        key: 1,
+        name: "胡彦斌",
+        age: Math.floor(Math.random() * 100),
+        address: "西湖区湖底公园1号",
+      },
+      {
+        key: 2,
+        name: "胡彦祖",
+        age: Math.floor(Math.random() * 100),
+        address: "西湖区湖底公园1号",
+      },
+    ]);
+  };
+  useEffect(() => {
+    request();
+  }, []);
 
   return (
     <>
+      <SearchForm search={request} />
       <Table dataSource={dataSource} columns={columns} />;
       <ModelForm ref={ModelFor} />
     </>
