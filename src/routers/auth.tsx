@@ -1,4 +1,4 @@
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 const AuthRouter = (props: { children: JSX.Element }) => {
   const token = localStorage.getItem("Mm");
