@@ -7,15 +7,15 @@ import Result from "../pages/404";
 import Login from "../pages/Login/index";
 import Communication from "../pages/测试/index";
 import { useState, lazy } from "react";
-const modules: any = import.meta.glob("../pages/*/*.tsx");
-for (const path in modules) {
-  modules[path]().then((mod: any) => {
-    console.log(path);
-    console.log(mod);
-  });
-}
+// const modules: any = import.meta.glob("../pages/*/*.tsx");
+// for (const path in modules) {
+//   modules[path]().then((mod: any) => {
+//     console.log(path);
+//     console.log(mod);
+//   });
+// }
 
-console.log(modules);
+// console.log(modules);
 
 const routes: any = [
   {

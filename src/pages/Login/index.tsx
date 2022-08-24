@@ -1,5 +1,5 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Form, Input } from "antd";
 import "./index.less";
 import { useNavigate } from "react-router-dom";
 function Login() {
@@ -24,7 +24,7 @@ function Login() {
         >
           <Input
             size="large"
-            prefix={<UserOutlined className="site-form-item-icon" />}
+            prefix={<UserOutlined />}
             placeholder="Username"
           />
         </Form.Item>
@@ -34,7 +34,7 @@ function Login() {
         >
           <Input.Password
             size="large"
-            prefix={<LockOutlined className="site-form-item-icon" />}
+            prefix={<LockOutlined />}
             type="password"
             placeholder="Password"
           />
