@@ -17,11 +17,19 @@ function Login() {
           color: "rgba(0, 0, 0, 0.85)",
           fontWeight: 600,
           fontSize: "33px",
+          margin: 0,
         }}
       >
         Backend system
       </h1>
-      <h2 style={{ color: "rgb(132, 133, 135)", fontSize: "14px" }}>
+      <h2
+        style={{
+          color: "rgb(132, 133, 135)",
+          fontSize: "14px",
+          marginTop: "12px",
+          marginBottom: "40px",
+        }}
+      >
         西湖区最具影响力的 Web 设计规范
       </h2>
       <Form
