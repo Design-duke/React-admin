@@ -18,7 +18,7 @@ const menu = [
   {
     key: "/222",
     icon: <UploadOutlined />,
-    label: <Link to="table">Menu</Link>,
+    label: "Menu",
     children: [
       {
         key: "/count",
