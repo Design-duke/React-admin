@@ -23,7 +23,7 @@ function App() {
         <Layout className="site-layout">
           <Header
             className="site-layout-background header"
-            style={{ padding: 0 }}
+            style={{ padding: "0 16px 0 0" }}
           >
             <Collapsed collapsed={collapsed} setCollapsed={setCollapsed} />
             <Right />
