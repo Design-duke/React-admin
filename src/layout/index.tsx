@@ -4,6 +4,7 @@ import { useState } from "react";
 import Collapsed from "./Collapsed/index";
 import Items from "./Menu/index";
 import "./index.less";
+import Right from "./RightContent/index";
 const { Header, Sider, Content } = Layout;
 function App() {
   const [collapsed, setCollapsed] = useState(false);
@@ -20,8 +21,12 @@ function App() {
           />
         </Sider>
         <Layout className="site-layout">
-          <Header className="site-layout-background" style={{ padding: 0 }}>
+          <Header
+            className="site-layout-background header"
+            style={{ padding: 0 }}
+          >
             <Collapsed collapsed={collapsed} setCollapsed={setCollapsed} />
+            <Right />
           </Header>
           <Content
             className="site-layout-background"
