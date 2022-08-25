@@ -18,22 +18,22 @@ const menu = [
   {
     key: "/222",
     icon: <UploadOutlined />,
-    label: <Link to="table">table</Link>,
+    label: <Link to="table">Menu</Link>,
     children: [
       {
         key: "/count",
         icon: <UserOutlined />,
-        label: <Link to="count">count</Link>,
+        label: <Link to="count">Count</Link>,
       },
       {
         key: "/About",
         icon: <UploadOutlined />,
-        label: <Link to="table">table</Link>,
+        label: <Link to="table">Table</Link>,
       },
       {
         key: "/communication",
         icon: <UploadOutlined />,
-        label: <Link to="communication">communication</Link>,
+        label: <Link to="communication">Communication</Link>,
       },
     ],
   },
