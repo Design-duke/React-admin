@@ -4,7 +4,7 @@ import ModelForm from "./Pop-ups/index";
 import SearchForm from "./searchForm/index";
 import { useEffect, useRef, useState } from "react";
 
-function Task() {
+function Tables() {
   const ModelFor: any = useRef(null);
   const confirm = (e: any) => {
     console.log(e);
@@ -93,4 +93,4 @@ function Task() {
   );
 }
 
-export default Task;
+export default Tables;
