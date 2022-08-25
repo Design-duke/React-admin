@@ -64,21 +64,30 @@ function Tables() {
       ),
     },
   ];
+  // [
+  //   {
+  //     key: 1,
+  //     name: "胡彦斌",
+  //     age: Math.floor(Math.random() * 100),
+  //     address: "西湖区湖底公园1号",
+  //   },
+  //   {
+  //     key: 2,
+  //     name: "胡彦祖",
+  //     age: Math.floor(Math.random() * 100),
+  //     address: "西湖区湖底公园1号",
+  //   },
+  // ]
   const request = () => {
-    setdataSource(() => [
-      {
-        key: 1,
-        name: "胡彦斌",
+    const arr = ["王", "赵", "孙", "李"];
+    setdataSource(() =>
+      Array.from({ length: 12 }).map((_item, index) => ({
+        key: index,
+        name: arr[Math.floor(Math.random() * 4)],
         age: Math.floor(Math.random() * 100),
-        address: "西湖区湖底公园1号",
-      },
-      {
-        key: 2,
-        name: "胡彦祖",
-        age: Math.floor(Math.random() * 100),
-        address: "西湖区湖底公园1号",
-      },
-    ]);
+        address: `西湖区湖底公园${index}号`,
+      }))
+    );
   };
   useEffect(() => {
     request();

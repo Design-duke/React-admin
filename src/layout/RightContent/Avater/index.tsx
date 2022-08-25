@@ -1,13 +1,22 @@
 import { Avatar, Menu } from "antd";
 import HeaderDropdown from "../../HeaderDropdown/index";
 import "../index.less";
-
 import {
   LogoutOutlined,
   SettingOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 function AvatarDropdown() {
+  const navigate = useNavigate();
+  const onMenuClick = (event: any) => {
+    const { key } = event;
+    if (key === "logout") {
+      localStorage.removeItem("Mm");
+      navigate("/");
+      return;
+    }
+  };
   const menuItems: any = [
     {
       key: "center",
@@ -29,7 +38,12 @@ function AvatarDropdown() {
     },
   ];
   const menuHeaderDropdown = (
-    <Menu className="menu" selectedKeys={[]} items={menuItems} />
+    <Menu
+      className="menu"
+      selectedKeys={[]}
+      items={menuItems}
+      onClick={onMenuClick}
+    />
   );
   return (
     <HeaderDropdown overlay={menuHeaderDropdown}>
