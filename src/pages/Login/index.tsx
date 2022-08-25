@@ -12,7 +12,9 @@ function Login() {
 
   return (
     <div className="container">
-      <h2>西湖区最具影响力的 Web 设计规范</h2>
+      <h2 style={{ color: "rgb(132, 133, 135)", fontSize: "14px" }}>
+        西湖区最具影响力的 Web 设计规范
+      </h2>
       <Form
         name="normal_login"
         className="login-form"
