@@ -1,6 +1,6 @@
 import { Avatar, Menu } from "antd";
 import HeaderDropdown from "../../HeaderDropdown/index";
-import "./index.less";
+import "../index.less";
 
 import {
   LogoutOutlined,
@@ -22,7 +22,6 @@ function AvatarDropdown() {
     {
       type: "divider" as const,
     },
-    ,
     {
       key: "logout",
       icon: <LogoutOutlined />,
@@ -41,7 +40,7 @@ function AvatarDropdown() {
           src="https://joeschmoe.io/api/v1/random"
           alt="avatar"
         />
-        <span className={`name anticon`}>admin</span>
+        <span className={`name anticon`}>Serati Ma</span>
       </span>
     </HeaderDropdown>
   );
