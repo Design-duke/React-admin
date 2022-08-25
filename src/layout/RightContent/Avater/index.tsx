@@ -18,16 +18,16 @@ function AvatarDropdown() {
     }
   };
   const menuItems: any = [
-    {
-      key: "center",
-      icon: <UserOutlined />,
-      label: "个人中心",
-    },
-    {
-      key: "settings",
-      icon: <SettingOutlined />,
-      label: "个人设置",
-    },
+    // {
+    //   key: "center",
+    //   icon: <UserOutlined />,
+    //   label: "个人中心",
+    // },
+    // {
+    //   key: "settings",
+    //   icon: <SettingOutlined />,
+    //   label: "个人设置",
+    // },
     {
       type: "divider" as const,
     },
