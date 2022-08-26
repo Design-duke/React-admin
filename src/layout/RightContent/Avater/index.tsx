@@ -51,6 +51,7 @@ function AvatarDropdown() {
         <Avatar
           size="small"
           className="avatar"
+          style={{ marginRight: "8px" }}
           src="https://joeschmoe.io/api/v1/random"
           alt="avatar"
         />
