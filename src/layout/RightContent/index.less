@@ -9,43 +9,35 @@
   }
 }
 
-.right {
+.action {
   display: flex;
-  float: right;
+  align-items: center;
   height: 48px;
-  margin-left: auto;
-  overflow: hidden;
-  .action {
-    display: flex;
-    align-items: center;
-    height: 48px;
-    padding: 0 12px;
-    cursor: pointer;
-    transition: all 0.3s;
-    > span {
-      vertical-align: middle;
-    }
-    &:hover {
-      background: rgba(0, 0, 0, 0.025);
-    }
-    &:global(.opened) {
-      background: rgba(0, 0, 0, 0.025);
-    }
+  padding: 0 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  > span {
+    vertical-align: middle;
   }
-  .search {
-    padding: 0 12px;
-    &:hover {
-      background: transparent;
-    }
+  &:hover {
+    background: rgba(0, 0, 0, 0.025);
   }
-  .avatar {
-    margin-right: 8px;
-    color: rgb(22, 119, 255);
-    vertical-align: top;
-    background: rgba(255, 255, 255, 0.85);
+  &:global(.opened) {
+    background: rgba(0, 0, 0, 0.025);
   }
 }
-
+.search {
+  padding: 0 12px;
+  &:hover {
+    background: transparent;
+  }
+}
+.avatar {
+  margin-right: 8px;
+  color: rgb(22, 119, 255);
+  vertical-align: top;
+  background: rgba(255, 255, 255, 0.85);
+}
 @media only screen and (max-width: 768px) {
   :global(.ant-divider-vertical) {
     vertical-align: unset;
