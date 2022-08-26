@@ -14,7 +14,6 @@ function About() {
         {
           title: "parent 1-0",
           key: "0-0-0",
-          disabled: true,
           children: [
             {
               title: "leaf",
