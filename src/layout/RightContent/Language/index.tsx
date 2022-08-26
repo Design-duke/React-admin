@@ -3,11 +3,15 @@ import { TranslationOutlined } from "@ant-design/icons";
 import { Menu, Space } from "antd";
 import "../index.less";
 import i18n from "i18next";
+import { useDispatch } from "react-redux";
+import { setLanguage } from "../../../redux/models/language";
 
 const index = () => {
+  const dispatch = useDispatch();
   const onMenuClick = (event: any) => {
     const { key } = event;
     i18n.changeLanguage(key);
+    dispatch(setLanguage(key));
   };
   const menuItems: any = [
     {
