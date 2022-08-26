@@ -3,6 +3,7 @@ import { Button, Tree } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import "./index.less";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 function About() {
   const [time, setTime] = useState(new Date().toLocaleTimeString());
   const treeData: DataNode[] = [
@@ -76,6 +77,7 @@ function About() {
       </div>
     );
   };
+  const { t, i18n } = useTranslation();
   useEffect(() => {
     setInterval(() => {
       setTime(new Date().toLocaleTimeString());
@@ -83,6 +85,7 @@ function About() {
   });
   return (
     <div>
+      <h1>{t("Welcome to React")}</h1>
       <Tree
         onSelect={onSelect}
         onCheck={onCheck}
