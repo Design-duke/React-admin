@@ -37,7 +37,6 @@ function Login() {
           <Input.Password
             size="large"
             prefix={<LockOutlined />}
-            type="password"
             placeholder="Password"
           />
         </Form.Item>
