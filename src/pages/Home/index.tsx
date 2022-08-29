@@ -4,7 +4,7 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import "./index.less";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-function About() {
+function Home() {
   const [time, setTime] = useState(new Date().toLocaleTimeString());
   const treeData: DataNode[] = [
     {
@@ -101,4 +101,4 @@ function About() {
   );
 }
 
-export default About;
+export default Home;

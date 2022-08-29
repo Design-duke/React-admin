@@ -15,11 +15,11 @@ function Count() {
   return (
     <div>
       <h1>{count}</h1>
-      <Button type="primary" onClick={add}>
-        加
+      <Button type="primary" onClick={add} style={{ marginRight: "8px" }}>
+        dispatch 加
       </Button>
       <Button type="primary" onClick={jian}>
-        减
+        dispatch 减
       </Button>
     </div>
   );

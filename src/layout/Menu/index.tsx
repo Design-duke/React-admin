@@ -13,7 +13,7 @@ const menu = [
   {
     key: "/Home",
     icon: <VideoCameraOutlined />,
-    label: <Link to={"/about"}>About</Link>,
+    label: <Link to={"/Home"}>Home</Link>,
   },
   {
     key: "/222",
@@ -26,7 +26,7 @@ const menu = [
         label: <Link to="count">Count</Link>,
       },
       {
-        key: "/About",
+        key: "/table",
         icon: <UploadOutlined />,
         label: <Link to="table">Table</Link>,
       },

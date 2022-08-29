@@ -14,10 +14,10 @@ function Index({}: Props) {
   return (
     <>
       <h1>{count}</h1>
-      <Button type="primary" onClick={add}>
+      <Button type="primary" onClick={add} style={{ marginRight: "8px" }}>
         点我加
       </Button>
-      <Reduce reduce={reduce}></Reduce>;
+      <Reduce reduce={reduce}></Reduce>
     </>
   );
 }

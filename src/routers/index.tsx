@@ -1,6 +1,6 @@
 import { Navigate, useRoutes } from "react-router-dom";
-import Home from "../layout/index";
-import About from "../pages/about/index";
+import Layout from "../layout/index";
+import Home from "../pages/Home/index";
 import Table from "../pages/table/index";
 import Count from "../pages/count/index";
 import Result from "../pages/404";
@@ -27,16 +27,16 @@ const routers: any = [
     auth: true,
     element: (
       <Auth>
-        <Home />
+        <Layout />
       </Auth>
     ),
     children: [
       {
-        path: "about",
+        path: "Home",
         auth: true,
         element: (
           <Auth>
-            <About />
+            <Home />
           </Auth>
         ),
       },
@@ -65,6 +65,7 @@ const routers: any = [
           <Auth>{lazyLoad(lazy(() => import("../pages/测试/index")))}</Auth>
         ),
       },
+      { path: "*", element: <Result /> },
     ],
   },
   { path: "*", element: <Result /> },
