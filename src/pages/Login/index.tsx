@@ -13,7 +13,7 @@ function Login() {
   return (
     <div className="container">
       <h1>Backend system</h1>
-      <h2 style={{}}>西湖区最具影响力的 Web 设计规范</h2>
+      <h2>西湖区最具影响力的 Web 设计规范</h2>
       <Form
         name="normal_login"
         className="login-form"
