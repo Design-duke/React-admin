@@ -62,7 +62,9 @@ const routers: any = [
         path: "communication",
         auth: true,
         element: (
-          <Auth>{lazyLoad(lazy(() => import("../pages/测试/index")))}</Auth>
+          <Auth>
+            {lazyLoad(lazy(() => import("../pages/reduxCount/index")))}
+          </Auth>
         ),
       },
       { path: "*", element: <Result /> },
