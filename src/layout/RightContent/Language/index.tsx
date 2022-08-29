@@ -3,10 +3,12 @@ import { TranslationOutlined } from "@ant-design/icons";
 import { Menu, Space } from "antd";
 import "../index.less";
 import i18n from "i18next";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setLanguage } from "../../../redux/models/language";
+import { RootState } from "../../../redux";
 
 const index = () => {
+  const language = useSelector((state: RootState) => state.setLanguage.lange);
   const dispatch = useDispatch();
   const onMenuClick = (event: any) => {
     const { key } = event;
@@ -20,10 +22,12 @@ const index = () => {
     {
       key: "en",
       label: "English",
+      disabled: language === "en",
     },
     {
       key: "zhCn",
       label: "简体中文",
+      disabled: language === "zhCn",
     },
   ];
   const menuHeaderDropdown = (
