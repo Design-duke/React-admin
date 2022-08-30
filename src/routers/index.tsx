@@ -7,6 +7,7 @@ import Result from "../pages/404";
 import Login from "../pages/Login/index";
 import Auth from "./auth";
 import lazyLoad from "./lazyLoad";
+import GitHub from "@/pages/github/index";
 import { lazy } from "react";
 // const modules: any = import.meta.glob("../pages/*/*.tsx");
 // for (const path in modules) {
@@ -55,6 +56,15 @@ const routers: any = [
         element: (
           <Auth>
             <Count />
+          </Auth>
+        ),
+      },
+      {
+        path: "link",
+        auth: true,
+        element: (
+          <Auth>
+            <GitHub />
           </Auth>
         ),
       },

@@ -1,4 +1,6 @@
 import {
+  AppstoreOutlined,
+  BugOutlined,
   UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
@@ -34,6 +36,18 @@ const menu = [
         key: "/communication",
         icon: <UploadOutlined />,
         label: <Link to="communication">Communication</Link>,
+      },
+    ],
+  },
+  {
+    key: "/1123link",
+    icon: <AppstoreOutlined />,
+    label: "Link",
+    children: [
+      {
+        key: "link",
+        icon: <BugOutlined />,
+        label: <Link to="link">GitHub地址</Link>,
       },
     ],
   },
