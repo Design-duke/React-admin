@@ -18,7 +18,7 @@ const menu = [
     label: <Link to={"/Home"}>Home</Link>,
   },
   {
-    key: "/222",
+    key: "/sub1",
     icon: <UploadOutlined />,
     label: "Menu",
     children: [
@@ -40,12 +40,12 @@ const menu = [
     ],
   },
   {
-    key: "/1123link",
+    key: "/sub2",
     icon: <AppstoreOutlined />,
     label: "Link",
     children: [
       {
-        key: "link",
+        key: "/link",
         icon: <BugOutlined />,
         label: <Link to="link">GitHub地址</Link>,
       },

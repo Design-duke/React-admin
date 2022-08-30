@@ -70,7 +70,6 @@ function App() {
           <Menu
             theme="dark"
             mode="inline"
-            defaultSelectedKeys={["/Home"]}
             items={Items}
             selectedKeys={selectedKeys}
           />
