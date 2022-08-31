@@ -42,16 +42,7 @@ const routers: any = [
         ),
       },
       {
-        path: "table",
-        auth: true,
-        element: (
-          <Auth>
-            <Table />
-          </Auth>
-        ),
-      },
-      {
-        path: "count",
+        path: "subOne/count",
         auth: true,
         element: (
           <Auth>
@@ -60,16 +51,16 @@ const routers: any = [
         ),
       },
       {
-        path: "link",
+        path: "subOne/table",
         auth: true,
         element: (
           <Auth>
-            <GitHub />
+            <Table />
           </Auth>
         ),
       },
       {
-        path: "communication",
+        path: "subOne/communication",
         auth: true,
         element: (
           <Auth>
@@ -77,6 +68,16 @@ const routers: any = [
           </Auth>
         ),
       },
+      {
+        path: "subTwo/link",
+        auth: true,
+        element: (
+          <Auth>
+            <GitHub />
+          </Auth>
+        ),
+      },
+
       { path: "*", element: <Result /> },
     ],
   },
