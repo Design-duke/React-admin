@@ -5,11 +5,11 @@ export default () => {
       <span className="text">
         Github 仓库：
         <a
-          href="https://github.com/Design-Duke/React-admin"
+          href="https://github.com/Design-duke/React-admin"
           target="_blank"
           rel="noreferrer"
         >
-          https://github.com/Design-Duke/React-admin
+          https://github.com/Design-duke/React-admin
         </a>
         &nbsp;求 ⭐⭐
       </span>
