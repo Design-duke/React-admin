@@ -3,8 +3,9 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import ModelForm from "./Pop-ups/index";
 import SearchForm from "./searchForm/index";
 import { useEffect, useRef, useState } from "react";
-
+import { useTranslation } from "react-i18next";
 function Tables() {
+  const { t } = useTranslation();
   const ModelFor: any = useRef(null);
   const confirm = (e: any) => {
     console.log(e);
@@ -26,22 +27,22 @@ function Tables() {
   const [dataSource, setdataSource] = useState<DataType[]>([]);
   const columns = [
     {
-      title: "姓名",
+      title: t("Table.columns.name"),
       dataIndex: "name",
       key: "name",
     },
     {
-      title: "年龄",
+      title: t("Table.columns.age"),
       dataIndex: "age",
       key: "age",
     },
     {
-      title: "住址",
+      title: t("Table.columns.address"),
       dataIndex: "address",
       key: "address",
     },
     {
-      title: "操作",
+      title: t("Table.columns.operate"),
       key: "操作",
       render: (text: any, record: any, index: any) => (
         <>

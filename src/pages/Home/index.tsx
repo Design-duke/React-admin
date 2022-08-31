@@ -84,7 +84,7 @@ function Home() {
   });
   return (
     <div>
-      <h1>{t("Welcome to React")}</h1>
+      <h1>{t("Home.Welcome")}</h1>
       <Tree
         onSelect={onSelect}
         onCheck={onCheck}
