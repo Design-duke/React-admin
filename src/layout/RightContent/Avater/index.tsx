@@ -55,7 +55,7 @@ function AvatarDropdown() {
           src="https://joeschmoe.io/api/v1/random"
           alt="avatar"
         />
-        <span className={`name anticon`}>design_duke</span>
+        <span className={`name anticon`}>Design_duke</span>
       </span>
     </HeaderDropdown>
   );
