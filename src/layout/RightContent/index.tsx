@@ -5,18 +5,7 @@ import Language from "./Language";
 import "../index.less";
 const GlobalHeaderRight: React.FC = () => {
   return (
-    <Space
-      size="middle"
-      style={{
-        display: "flex",
-        alignItems: "center",
-        height: "100%",
-        padding: " 0 12px",
-        cursor: "pointer",
-        transition: " all 0.3s",
-        justifyContent: "flex-end",
-      }}
-    >
+    <Space size="middle">
       <Avater />
       <Language />
     </Space>
