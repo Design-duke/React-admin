@@ -5,7 +5,7 @@ import Language from "./Language";
 import "../index.less";
 const GlobalHeaderRight: React.FC = () => {
   return (
-    <Space size="middle">
+    <Space>
       <Avater />
       <Language />
     </Space>
