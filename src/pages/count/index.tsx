@@ -1,28 +1,25 @@
-import type { RootState } from "../../redux/index";
-import { useSelector, useDispatch } from "react-redux";
-import { decrement, increment } from "../../redux/models/count";
 import { Button } from "antd";
+import React, { useState } from "react";
+import Reduce from "./reduce";
+type Props = {};
 
-function Count() {
-  const count = useSelector((state: RootState) => state.count.value);
-  const dispatch = useDispatch();
+function Index({}: Props) {
+  const [count, setCount] = useState(0);
   const add = () => {
-    dispatch(increment());
+    setCount((v) => v + 1);
   };
-  const jian = () => {
-    dispatch(decrement());
+  const reduce = () => {
+    setCount((v) => v - 1);
   };
   return (
-    <div>
+    <>
       <h1>{count}</h1>
       <Button type="primary" onClick={add} style={{ marginRight: "8px" }}>
-        dispatch 加
+        点我加
       </Button>
-      <Button type="primary" onClick={jian}>
-        dispatch 减
-      </Button>
-    </div>
+      <Reduce reduce={reduce}></Reduce>
+    </>
   );
 }
 
-export default Count;
+export default Index;

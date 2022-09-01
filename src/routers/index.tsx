@@ -2,7 +2,7 @@ import { Navigate, useRoutes } from "react-router-dom";
 import Layout from "../layout/index";
 import Home from "../pages/Home/index";
 import Table from "../pages/table/index";
-import Count from "../pages/count/index";
+import Count from "../pages/reduxCount/index";
 import Result from "../pages/404";
 import Login from "../pages/Login/index";
 import Auth from "./auth";
@@ -63,9 +63,7 @@ const routers: any = [
         path: "subOne/communication",
         auth: true,
         element: (
-          <Auth>
-            {lazyLoad(lazy(() => import("../pages/reduxCount/index")))}
-          </Auth>
+          <Auth>{lazyLoad(lazy(() => import("../pages/count/index")))}</Auth>
         ),
       },
       {
