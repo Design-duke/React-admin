@@ -3,7 +3,7 @@ import { useImperativeHandle, useState, forwardRef, Ref } from "react";
 
 function Model(props: any, ref: Ref<unknown> | undefined) {
   const showModal = (text: any) => {
-    setIsModalVisible(true);
+    setIsModalOpen(true);
     form.setFieldsValue(text);
   };
   useImperativeHandle(ref, () => {
@@ -13,23 +13,23 @@ function Model(props: any, ref: Ref<unknown> | undefined) {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
   };
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
   const { TextArea } = Input;
 
   const handleOk = () => {
-    setIsModalVisible(false);
+    setIsModalOpen(false);
     form.submit();
   };
 
   const handleCancel = () => {
-    setIsModalVisible(false);
+    setIsModalOpen(false);
     form.resetFields();
   };
   return (
     <Modal
       title="Modal"
-      visible={isModalVisible}
+      open={isModalOpen}
       onOk={handleOk}
       onCancel={handleCancel}
     >
