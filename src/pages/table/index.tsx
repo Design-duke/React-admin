@@ -65,20 +65,6 @@ function Tables() {
       ),
     },
   ];
-  // [
-  //   {
-  //     key: 1,
-  //     name: "胡彦斌",
-  //     age: Math.floor(Math.random() * 100),
-  //     address: "西湖区湖底公园1号",
-  //   },
-  //   {
-  //     key: 2,
-  //     name: "胡彦祖",
-  //     age: Math.floor(Math.random() * 100),
-  //     address: "西湖区湖底公园1号",
-  //   },
-  // ]
   const request = () => {
     const arr = ["王", "赵", "孙", "李"];
     setdataSource(() =>

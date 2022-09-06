@@ -1,7 +1,7 @@
 import { Modal, Form, Input } from "antd";
 import { useImperativeHandle, useState, forwardRef, Ref } from "react";
 
-function Model(props: any, ref: Ref<unknown> | undefined) {
+function Model(_props: any, ref: Ref<unknown> | undefined) {
   const showModal = (text: any) => {
     setIsModalOpen(true);
     form.setFieldsValue(text);
@@ -10,8 +10,8 @@ function Model(props: any, ref: Ref<unknown> | undefined) {
     return { showModal };
   });
   const layout = {
-    labelCol: { span: 8 },
-    wrapperCol: { span: 16 },
+    labelCol: { span: 6 },
+    wrapperCol: { span: 18 },
   };
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
@@ -33,16 +33,11 @@ function Model(props: any, ref: Ref<unknown> | undefined) {
       onOk={handleOk}
       onCancel={handleCancel}
     >
-      <Form
-        name="basic"
-        form={form}
-        {...layout}
-        initialValues={{ remember: true }}
-        autoComplete="off"
-      >
+      <Form name="basic" form={form} {...layout}>
         <Form.Item label="key" name="key" hidden>
           <Input />
         </Form.Item>
+
         <Form.Item
           label="Name"
           name="name"
@@ -58,6 +53,7 @@ function Model(props: any, ref: Ref<unknown> | undefined) {
         >
           <Input />
         </Form.Item>
+
         <Form.Item
           label="address"
           name="address"
