@@ -7,6 +7,7 @@ import { ConfigProvider } from "antd";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "./redux";
+import AuthRouter from "@/routers/auth";
 function App() {
   const [i18nLocale, setI18nLocale] = useState(zhCN);
   const lange = useSelector((state: RootState) => state.setLanguage.lange);
@@ -18,7 +19,9 @@ function App() {
     <div className="App">
       <ConfigProvider locale={i18nLocale}>
         <HashRouter>
-          <Router />
+          <AuthRouter>
+            <Router />
+          </AuthRouter>
         </HashRouter>
       </ConfigProvider>
     </div>

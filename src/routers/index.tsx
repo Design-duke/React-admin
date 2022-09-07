@@ -5,7 +5,6 @@ import Table from "../pages/table/index";
 import Count from "../pages/reduxCount/index";
 import Result from "../pages/404";
 import Login from "../pages/Login/index";
-import Auth from "./auth";
 import lazyLoad from "./lazyLoad";
 import GitHub from "@/pages/github/index";
 import { lazy } from "react";
@@ -21,66 +20,41 @@ import { lazy } from "react";
 const routers: any = [
   {
     path: "/",
-    auth: false,
-    element: <Navigate to={"/login"} />,
+    element: <Navigate to={"/login"} replace />,
   },
+  { path: "/login", element: <Login /> },
   {
-    auth: true,
-    element: (
-      <Auth>
-        <Layout />
-      </Auth>
-    ),
+    element: <Layout />,
     children: [
       {
         path: "Home",
         auth: true,
-        element: (
-          <Auth>
-            <Home />
-          </Auth>
-        ),
+        element: <Home />,
       },
       {
         path: "subOne/count",
         auth: true,
-        element: (
-          <Auth>
-            <Count />
-          </Auth>
-        ),
+        element: <Count />,
       },
       {
         path: "subOne/table",
         auth: true,
-        element: (
-          <Auth>
-            <Table />
-          </Auth>
-        ),
+        element: <Table />,
       },
       {
         path: "subOne/communication",
         auth: true,
-        element: (
-          <Auth>{lazyLoad(lazy(() => import("../pages/count/index")))}</Auth>
-        ),
+        element: lazyLoad(lazy(() => import("../pages/count/index"))),
       },
       {
         path: "subTwo/link",
         auth: true,
-        element: (
-          <Auth>
-            <GitHub />
-          </Auth>
-        ),
+        element: <GitHub />,
       },
-
       { path: "*", element: <Result /> },
     ],
   },
   { path: "*", element: <Result /> },
-  { path: "/login", element: <Login /> },
 ];
 
 const Router = () => {
