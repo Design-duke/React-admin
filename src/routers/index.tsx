@@ -17,12 +17,12 @@ import { lazy } from "react";
 // }
 // console.log(modules);
 
-const routers: any = [
+export const routers: any = [
   {
     path: "/",
-    element: <Navigate to={"/login"} replace />,
+    element: <Navigate to={"login"} replace />,
   },
-  { path: "/login", element: <Login /> },
+  { path: "login", element: <Login /> },
   {
     element: <Layout />,
     children: [
