@@ -44,23 +44,23 @@ export const searchRoute = (
   return result;
 };
 
-export function proxy() {
-  let obj: any = { text: "vue3" };
-  const bucket = new Set();
-  const newObj = new Proxy(obj, {
-    get(target, key) {
-      bucket.add(effect);
-      return target[key];
-    },
-    set(target, key, newValue) {
-      target[key] = newValue;
-      bucket.forEach((fn) => fn());
-      return true;
-    },
-  });
-  function effect() {
-    document.getElementById("test")?.innerText = newObj.text;
-  }
-  effect();
-  newObj.text = "vue3响应了";
-}
+// export function proxy() {
+//   let obj: any = { text: "vue3" };
+//   const bucket = new Set();
+//   const newObj = new Proxy(obj, {
+//     get(target, key) {
+//       bucket.add(effect);
+//       return target[key];
+//     },
+//     set(target, key, newValue) {
+//       target[key] = newValue;
+//       bucket.forEach((fn) => fn());
+//       return true;
+//     },
+//   });
+//   function effect() {
+//     document.getElementById("test")?.innerText = newObj.text;
+//   }
+//   effect();
+//   newObj.text = "vue3响应了";
+// }
