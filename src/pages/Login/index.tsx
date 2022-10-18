@@ -1,13 +1,23 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, message } from "antd";
 import "./index.less";
 import { useNavigate } from "react-router-dom";
+import { LoginApi } from "@/services/Login";
 function Login() {
   const navigate = useNavigate();
-  const onFinish = (values: any) => {
+  const onFinish = async (values: any) => {
     console.log("Received values of form: ", values);
-    localStorage.setItem("Mm", "login");
-    navigate("/Home");
+    const formData = new FormData();
+    formData.append("username", values.username);
+    formData.append("password", values.password);
+    const res = await LoginApi(formData);
+    if (res.data.success) {
+      localStorage.setItem("token", JSON.stringify(res.data.data.token));
+      localStorage.setItem("Mm", "login");
+      navigate("/Home");
+    } else {
+      message.error(res.data.message);
+    }
   };
 
   return (
@@ -24,11 +34,7 @@ function Login() {
           name="username"
           rules={[{ required: true, message: "Please input your Username!" }]}
         >
-          <Input
-            size="large"
-            prefix={<UserOutlined />}
-            placeholder="Username"
-          />
+          <Input size="large" prefix={<UserOutlined />} placeholder="admin" />
         </Form.Item>
         <Form.Item
           name="password"
@@ -37,7 +43,7 @@ function Login() {
           <Input.Password
             size="large"
             prefix={<LockOutlined />}
-            placeholder="Password"
+            placeholder="12345"
           />
         </Form.Item>
         <Form.Item>

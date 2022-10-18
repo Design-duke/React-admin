@@ -4,6 +4,7 @@ import ModelForm from "./Pop-ups/index";
 import SearchForm from "./searchForm/index";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { getStoreInfoApi } from "@/services";
 function Tables() {
   const { t } = useTranslation();
   const ModelFor: any = useRef(null);
@@ -24,22 +25,41 @@ function Tables() {
     age: number;
     address: string;
   }
-  const [dataSource, setdataSource] = useState<DataType[]>([]);
+
+  const pageOnchange = (val: any) => {
+    setPagination({
+      currentPage: val.current,
+      pageSize: val.pageSize,
+      total: val.total,
+    });
+    request({
+      currentPage: val.current,
+      pageSize: val.pageSize,
+    });
+  };
+  const [pagination, setPagination] = useState({
+    currentPage: 1,
+    pageSize: 10,
+    total: 0,
+  });
+  const [dataSource, setDataSource] = useState<DataType[]>([]);
   const columns = [
     {
       title: t("Table.columns.name"),
-      dataIndex: "name",
       key: "name",
+      render: (prop: any, row: any, index: any) => (
+        <>{row.id + "-" + row.name}</>
+      ),
     },
     {
       title: t("Table.columns.age"),
-      dataIndex: "age",
-      key: "age",
+      dataIndex: "phone",
+      key: "2",
     },
     {
       title: t("Table.columns.address"),
-      dataIndex: "address",
-      key: "address",
+      dataIndex: "email",
+      key: "3",
     },
     {
       title: t("Table.columns.operate"),
@@ -48,7 +68,6 @@ function Tables() {
         <>
           <Button
             type="primary"
-            style={{ marginRight: "5px" }}
             icon={<EditOutlined />}
             onClick={() => handleEdit(text, record, index)}
           ></Button>{" "}
@@ -65,25 +84,30 @@ function Tables() {
       ),
     },
   ];
-  const request = () => {
-    const arr = ["王", "赵", "孙", "李"];
-    setdataSource(() =>
-      Array.from({ length: 12 }).map((_item, index) => ({
-        key: index,
-        name: arr[Math.floor(Math.random() * 4)],
-        age: Math.floor(Math.random() * 100),
-        address: `西湖区湖底公园${index}号`,
-      }))
-    );
+  const request = async (params: any) => {
+    const res = await getStoreInfoApi(params);
+    setDataSource(res.data.list);
+    setPagination({
+      ...pagination,
+      currentPage: res.data.pageNum,
+      total: res.data.total,
+    });
   };
   useEffect(() => {
-    request();
+    request(pagination);
   }, []);
 
   return (
     <>
       <SearchForm search={request} />
-      <Table dataSource={dataSource} columns={columns} />;
+      <Table
+        dataSource={dataSource}
+        columns={columns}
+        rowKey={(row: any) => row.id}
+        pagination={pagination}
+        onChange={pageOnchange}
+      />
+      ;
       <ModelForm ref={ModelFor} />
     </>
   );

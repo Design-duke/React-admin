@@ -13,7 +13,8 @@ const service: AxiosInstance = axios.create({
 service.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     // JWT鉴权处理
-
+    //@ts-ignore
+    config.headers.token = JSON.parse(localStorage.getItem("token") || "");
     return config;
   },
   (error: AxiosError) => {

@@ -14,3 +14,10 @@ export const postRequestApi = (data: string) => {
     data,
   });
 };
+export const getStoreInfoApi = (params: any) => {
+  return request({
+    url: "/management/getAllStores",
+    method: "GET",
+    params,
+  });
+};
