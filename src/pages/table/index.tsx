@@ -25,7 +25,7 @@ function Tables() {
     age: number;
     address: string;
   }
-
+  const [loading, setLoading] = useState(false);
   const pageOnchange = (val: any) => {
     setPagination({
       currentPage: val.current,
@@ -85,6 +85,7 @@ function Tables() {
     },
   ];
   const request = async (params: any) => {
+    setLoading(true);
     const res = await getStoreInfoApi(params);
     setDataSource(res.data.list);
     setPagination({
@@ -92,6 +93,7 @@ function Tables() {
       currentPage: res.data.pageNum,
       total: res.data.total,
     });
+    setLoading(false);
   };
   useEffect(() => {
     request(pagination);
@@ -106,8 +108,8 @@ function Tables() {
         rowKey={(row: any) => row.id}
         pagination={pagination}
         onChange={pageOnchange}
+        loading={loading}
       />
-      ;
       <ModelForm ref={ModelFor} />
     </>
   );
