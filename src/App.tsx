@@ -10,7 +10,7 @@ import { RootState } from "./redux";
 import AuthRouter from "@/routers/auth";
 function App() {
   const [i18nLocale, setI18nLocale] = useState(zhCN);
-  const lange = useSelector((state: RootState) => state.setLanguage.lange);
+  const lange = useSelector((state: RootState) => state.language.lange);
   useEffect(() => {
     if (lange == "en") return setI18nLocale(enUS);
     if (lange == "zhCn") return setI18nLocale(zhCN);

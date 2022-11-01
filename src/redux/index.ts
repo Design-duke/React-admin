@@ -1,8 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "./models/count";
-import setLanguage from "./models/language";
+import count from "./models/count";
+import language from "./models/language";
+import collapsed from "./models/layout";
 export const store = configureStore({
-  reducer: { count: counterReducer, setLanguage },
+  reducer: {
+    count,
+    language,
+    collapsed,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

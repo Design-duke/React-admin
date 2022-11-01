@@ -1,16 +1,39 @@
+import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { Layout } from "antd";
-import { useState } from "react";
 import Collapsed from "./Collapsed/index";
 import Right from "./RightContent/index";
 import Menu from "./Menu/index";
+import type { RootState } from "@/redux/index";
+import { useSelector, useDispatch } from "react-redux";
+import { setIsCollapse } from "@/redux/models/layout";
+
 import "./index.less";
 
 const { Header, Sider, Content } = Layout;
 
 function App() {
-  const [collapsed, setCollapsed] = useState(false);
+  const dispatch = useDispatch();
+  const collapsed = useSelector(
+    (state: RootState) => state.collapsed.isCollapse
+  );
 
+  const setCollapsed = () => {
+    dispatch(setIsCollapse(!collapsed));
+  };
+  // 监听窗口大小变化
+  const listeningWindow = () => {
+    window.onresize = () => {
+      return (() => {
+        let screenWidth = document.body.clientWidth;
+        if (!collapsed && screenWidth < 1200) dispatch(setIsCollapse(true));
+        if (!collapsed && screenWidth > 1200) dispatch(setIsCollapse(false));
+      })();
+    };
+  };
+  useEffect(() => {
+    listeningWindow();
+  }, []);
   return (
     <div className="layout">
       <Layout style={{ minHeight: "100vh" }}>

@@ -8,7 +8,7 @@ import { setLanguage } from "../../../redux/models/language";
 import { RootState } from "../../../redux";
 
 const index = () => {
-  const language = useSelector((state: RootState) => state.setLanguage.lange);
+  const language = useSelector((state: RootState) => state.language.lange);
   const dispatch = useDispatch();
   const onMenuClick = (event: any) => {
     const { key } = event;
