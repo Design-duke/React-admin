@@ -1,33 +1,21 @@
-import { Avatar, Menu } from "antd";
-import HeaderDropdown from "../../HeaderDropdown/index";
-import "../index.less";
-import {
-  LogoutOutlined,
-  SettingOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import { Avatar } from "antd";
+import type { MenuProps } from "antd";
+import HeaderDropdown from "@/layout/HeaderDropdown/index";
+import { LogoutOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+
+import "../index.less";
+
 function AvatarDropdown() {
   const navigate = useNavigate();
-  const onMenuClick = (event: any) => {
-    const { key } = event;
+  const onClick: MenuProps["onClick"] = ({ key }) => {
     if (key === "logout") {
       localStorage.removeItem("Mm");
       navigate("/");
       return;
     }
   };
-  const menuItems: any = [
-    // {
-    //   key: "center",
-    //   icon: <UserOutlined />,
-    //   label: "个人中心",
-    // },
-    // {
-    //   key: "settings",
-    //   icon: <SettingOutlined />,
-    //   label: "个人设置",
-    // },
+  const items: MenuProps["items"] = [
     {
       type: "divider" as const,
     },
@@ -37,16 +25,9 @@ function AvatarDropdown() {
       label: "退出登录",
     },
   ];
-  const menuHeaderDropdown = (
-    <Menu
-      className="menu"
-      selectedKeys={[]}
-      items={menuItems}
-      onClick={onMenuClick}
-    />
-  );
+
   return (
-    <HeaderDropdown overlay={menuHeaderDropdown}>
+    <HeaderDropdown menu={{ items, onClick }}>
       <span className="action account">
         <Avatar
           size="small"

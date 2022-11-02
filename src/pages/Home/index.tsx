@@ -1,9 +1,11 @@
 import type { DataNode, TreeProps } from "antd/es/tree";
 import { Button, DatePicker, Tree } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import "./index.less";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+
+import "./index.less";
+
 function Home() {
   const [time, setTime] = useState(new Date().toLocaleTimeString());
   const treeData: DataNode[] = [

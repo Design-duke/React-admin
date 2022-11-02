@@ -2,7 +2,7 @@ import { Dropdown } from "antd";
 import type { DropDownProps } from "antd/es/dropdown";
 export type HeaderDropdownProps = {
   overlayClassName?: string;
-  overlay: React.ReactNode | (() => React.ReactNode) | any;
+  menu: React.ReactNode | (() => React.ReactNode) | any;
   placement?:
     | "bottomLeft"
     | "bottomRight"
@@ -10,7 +10,7 @@ export type HeaderDropdownProps = {
     | "topCenter"
     | "topRight"
     | "bottomCenter";
-} & Omit<DropDownProps, "overlay">;
+} & Omit<DropDownProps, "menu">;
 
 const HeaderDropdown: React.FC<HeaderDropdownProps> = ({ ...restProps }) => (
   <Dropdown {...restProps} />

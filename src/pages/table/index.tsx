@@ -5,6 +5,7 @@ import SearchForm from "./searchForm/index";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getStoreInfoApi } from "@/services";
+
 function Tables() {
   const { t } = useTranslation();
   const ModelFor: any = useRef(null);

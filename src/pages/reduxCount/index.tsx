@@ -1,6 +1,6 @@
-import type { RootState } from "../../redux/index";
+import type { RootState } from "@/redux/index";
 import { useSelector, useDispatch } from "react-redux";
-import { decrement, increment } from "../../redux/models/count";
+import { decrement, increment } from "@/redux/models/count";
 import { Button } from "antd";
 
 function Count() {
