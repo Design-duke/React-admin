@@ -2,20 +2,13 @@ import { Modal, Form, Input } from "antd";
 import { useImperativeHandle, useState, forwardRef, Ref } from "react";
 
 function Model(_props: any, ref: Ref<unknown> | undefined) {
-  const showModal = (text: any) => {
-    setIsModalOpen(true);
-    form.setFieldsValue(text);
-  };
-  useImperativeHandle(ref, () => {
-    return { showModal };
-  });
+  const { TextArea } = Input;
   const layout = {
     labelCol: { span: 6 },
     wrapperCol: { span: 18 },
   };
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
-  const { TextArea } = Input;
 
   const handleOk = () => {
     setIsModalOpen(false);
@@ -26,14 +19,27 @@ function Model(_props: any, ref: Ref<unknown> | undefined) {
     setIsModalOpen(false);
     form.resetFields();
   };
+
+  const showModal = (text: any) => {
+    setIsModalOpen(true);
+    setTimeout(() => {
+      form.setFieldsValue(text);
+    }, 100);
+  };
+
+  useImperativeHandle(ref, () => {
+    return { showModal };
+  });
+
   return (
     <Modal
       title="Modal"
+      destroyOnClose
       open={isModalOpen}
       onOk={handleOk}
       onCancel={handleCancel}
     >
-      <Form name="basic" form={form} {...layout}>
+      <Form name="basic" form={form} {...layout} preserve={false}>
         <Form.Item label="key" name="key" hidden>
           <Input />
         </Form.Item>
