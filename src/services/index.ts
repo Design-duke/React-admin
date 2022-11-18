@@ -16,7 +16,7 @@ export const postRequestApi = (data: string) => {
 };
 export const getStoreInfoApi = (params: any) => {
   return request({
-    url: "/management/getAllStores",
+    url: "/getStoreInfo",
     method: "GET",
     params,
   });

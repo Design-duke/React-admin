@@ -9,17 +9,8 @@ function Login() {
   const navigate = useNavigate();
   const onFinish = async (values: any) => {
     console.log("Received values of form: ", values);
-    const formData = new FormData();
-    formData.append("username", values.username);
-    formData.append("password", values.password);
-    const res = await LoginApi(formData);
-    if (res.data.success) {
-      localStorage.setItem("token", JSON.stringify(res.data.data.token));
-      localStorage.setItem("Mm", "login");
-      navigate("/Home");
-    } else {
-      message.error(res.data.message);
-    }
+    localStorage.setItem("Mm", "login");
+    navigate("/Home");
   };
 
   return (

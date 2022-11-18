@@ -16,7 +16,7 @@ export default defineConfig(({ command, mode }) => {
       open: true,
       proxy: {
         "/dev": {
-          target: "http://47.114.113.169:8084/api",
+          target: "http://",
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/dev/, ""),
         },

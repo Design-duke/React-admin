@@ -87,13 +87,13 @@ function Tables() {
   ];
   const request = async (params: any) => {
     setLoading(true);
-    const res = await getStoreInfoApi(params);
-    setDataSource(res.data.list);
-    setPagination({
-      ...pagination,
-      currentPage: res.data.pageNum,
-      total: res.data.total,
-    });
+    // const res = await getStoreInfoApi(params);
+    // setDataSource(res.data.list);
+    // setPagination({
+    //   ...pagination,
+    //   currentPage: res.data.pageNum,
+    //   total: res.data.total,
+    // });
     setLoading(false);
   };
   useEffect(() => {
