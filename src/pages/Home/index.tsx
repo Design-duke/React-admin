@@ -1,10 +1,15 @@
 import type { DataNode, TreeProps } from "antd/es/tree";
-import { Button, DatePicker, Tree } from "antd";
+import { Button, DatePicker, Tree, Typography } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
 
 import "./index.less";
+dayjs.extend(customParseFormat);
+
+const { Title } = Typography;
 
 function Home() {
   const [time, setTime] = useState(new Date().toLocaleTimeString());
@@ -86,7 +91,12 @@ function Home() {
   });
   return (
     <div>
-      <h1>{t("Home.Welcome")}</h1>
+      <Title level={2}>{t("Home.Welcome")}</Title>
+      {/* <h1 text="前端简单说" className="jianb">
+        前端简单说
+      </h1> */}
+      <DatePicker defaultValue={dayjs()} />
+      <Title>{time}</Title>
       <Tree
         onSelect={onSelect}
         onCheck={onCheck}
@@ -94,11 +104,6 @@ function Home() {
         showLine
         titleRender={titleRender}
       />
-      {/* <h1 text="前端简单说" className="jianb">
-        前端简单说
-      </h1> */}
-      <h1>{time}</h1>
-      <DatePicker />
     </div>
   );
 }

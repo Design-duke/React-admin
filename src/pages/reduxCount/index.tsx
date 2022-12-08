@@ -1,7 +1,9 @@
 import type { RootState } from "@/redux/index";
 import { useSelector, useDispatch } from "react-redux";
 import { decrement, increment } from "@/redux/models/count";
-import { Button } from "antd";
+import { Button, Typography } from "antd";
+
+const { Title } = Typography;
 
 function Count() {
   const count = useSelector((state: RootState) => state.count.value);
@@ -14,7 +16,7 @@ function Count() {
   };
   return (
     <div>
-      <h1>{count}</h1>
+      <Title>{count}</Title>
       <Button type="primary" onClick={add} style={{ marginRight: "8px" }}>
         dispatch 加
       </Button>

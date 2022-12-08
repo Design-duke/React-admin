@@ -1,13 +1,13 @@
 import { HashRouter } from "react-router-dom";
 import Router from "./routers/index";
-import enUS from "antd/es/locale/en_US";
-import zhCN from "antd/es/locale/zh_CN";
+import enUS from "antd/locale/en_US";
+import zhCN from "antd/locale/zh_CN";
 import { ConfigProvider } from "antd";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "./redux";
 import AuthRouter from "@/routers/auth";
-
+import "dayjs/locale/zh-cn";
 import "./app.less";
 
 function App() {

@@ -1,8 +1,10 @@
 # React-admin
+
 #### 主要技术栈
+
 - MVVM 框架：React 18
 - 工程化管理：vite v3
-- UI 框架：antd v4
+- UI 框架：antd v5
 - 路由管理：React-router v6
 - 状态管理：reduxjs/toolkit
 - 数据请求：axios
@@ -29,5 +31,3 @@
    ```
 
 ### 本项目只为搭建一个简单易懂的后台，仅供学习参考，可直接对接接口写页面，极大的节约您的时间。
-
-

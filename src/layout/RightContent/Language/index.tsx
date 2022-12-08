@@ -1,8 +1,7 @@
 import HeaderDropdown from "@/layout/HeaderDropdown/index";
-import { TranslationOutlined } from "@ant-design/icons";
-import { Space } from "antd";
-import type { MenuProps } from "antd";
 import i18n from "i18next";
+import type { MenuProps } from "antd";
+import { TranslationOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { setLanguage } from "@/redux/models/language";
 import { RootState } from "@/redux";
@@ -34,9 +33,7 @@ const index = () => {
 
   return (
     <HeaderDropdown menu={{ items, onClick }} className="action">
-      <Space>
-        <TranslationOutlined style={{ fontSize: "18px" }} />
-      </Space>
+      <TranslationOutlined style={{ fontSize: "18px" }} />
     </HeaderDropdown>
   );
 };
