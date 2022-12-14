@@ -6,6 +6,7 @@ function Resul() {
   const backHome = () => {
     navigate("Home");
   };
+
   return (
     <Result
       status="404"

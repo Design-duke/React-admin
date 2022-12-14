@@ -1,7 +1,7 @@
+import { Button, Typography } from "antd";
 import type { RootState } from "@/redux/index";
 import { useSelector, useDispatch } from "react-redux";
 import { decrement, increment } from "@/redux/models/count";
-import { Button, Typography } from "antd";
 
 const { Title } = Typography;
 
@@ -14,6 +14,7 @@ function Count() {
   const jian = () => {
     dispatch(decrement());
   };
+
   return (
     <div>
       <Title>{count}</Title>

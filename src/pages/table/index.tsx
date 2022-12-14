@@ -1,9 +1,9 @@
-import { Table, Button, message, Popconfirm } from "antd";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import ModelForm from "./Pop-ups/index";
 import SearchForm from "./searchForm/index";
-import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useEffect, useRef, useState } from "react";
+import { Table, Button, message, Popconfirm } from "antd";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { getStoreInfoApi } from "@/services";
 
 function Tables() {

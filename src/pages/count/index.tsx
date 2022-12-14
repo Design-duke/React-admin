@@ -1,6 +1,6 @@
-import { Button, Typography } from "antd";
-import { useState } from "react";
 import Reduce from "./reduce";
+import { useState } from "react";
+import { Button, Typography } from "antd";
 type Props = {};
 const { Title } = Typography;
 function Index({}: Props) {
@@ -11,6 +11,7 @@ function Index({}: Props) {
   const reduce = () => {
     setCount((v) => v - 1);
   };
+
   return (
     <>
       <Title>{count}</Title>

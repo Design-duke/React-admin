@@ -1,12 +1,12 @@
-import { useEffect } from "react";
-import { Outlet } from "react-router-dom";
-import { Layout } from "antd";
 import Collapsed from "./Collapsed/index";
 import Right from "./RightContent/index";
 import Menu from "./Menu/index";
+import { Layout } from "antd";
+import { useEffect } from "react";
+import { Outlet } from "react-router-dom";
 import type { RootState } from "@/redux/index";
-import { useSelector, useDispatch } from "react-redux";
 import { setIsCollapse } from "@/redux/models/layout";
+import { useSelector, useDispatch } from "react-redux";
 
 import "./index.less";
 
@@ -34,6 +34,7 @@ function App() {
   useEffect(() => {
     listeningWindow();
   }, []);
+
   return (
     <div className="layout">
       <Layout style={{ minHeight: "100vh" }}>

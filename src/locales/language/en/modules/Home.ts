@@ -1,3 +1,3 @@
 export default {
-  Welcome: "Welcome to React and react-i18next",
+  Welcome: "Welcome to Design_duke's React-admin",
 };

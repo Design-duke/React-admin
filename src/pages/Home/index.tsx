@@ -1,10 +1,10 @@
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import type { DataNode, TreeProps } from "antd/es/tree";
 import { Button, DatePicker, Tree, Typography } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import dayjs from "dayjs";
-import customParseFormat from "dayjs/plugin/customParseFormat";
 
 import "./index.less";
 dayjs.extend(customParseFormat);
@@ -89,6 +89,7 @@ function Home() {
       setTime(new Date().toLocaleTimeString());
     }, 1000);
   });
+
   return (
     <div>
       <Title level={2}>{t("Home.Welcome")}</Title>

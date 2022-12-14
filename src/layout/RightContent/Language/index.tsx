@@ -1,10 +1,10 @@
 import HeaderDropdown from "@/layout/HeaderDropdown/index";
 import i18n from "i18next";
-import type { MenuProps } from "antd";
-import { TranslationOutlined } from "@ant-design/icons";
-import { useDispatch, useSelector } from "react-redux";
-import { setLanguage } from "@/redux/models/language";
 import { RootState } from "@/redux";
+import type { MenuProps } from "antd";
+import { setLanguage } from "@/redux/models/language";
+import { useDispatch, useSelector } from "react-redux";
+import { TranslationOutlined } from "@ant-design/icons";
 
 import "../index.less";
 

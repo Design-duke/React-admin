@@ -1,4 +1,3 @@
-import { Navigate, useRoutes } from "react-router-dom";
 import Layout from "../layout/index";
 import Home from "../pages/Home/index";
 import Table from "../pages/table/index";
@@ -8,6 +7,7 @@ import Login from "../pages/Login/index";
 import lazyLoad from "./lazyLoad";
 import GitHub from "@/pages/github/index";
 import { lazy } from "react";
+import { Navigate, useRoutes } from "react-router-dom";
 // const modules: any = import.meta.glob("../pages/*/*.tsx");
 // for (const path in modules) {
 //   modules[path]().then((mod: any) => {

@@ -1,7 +1,7 @@
-import { Space } from "antd";
 import React from "react";
-import Avater from "./Avater/index";
 import Language from "./Language";
+import Avater from "./Avater/index";
+import { Space } from "antd";
 
 import "../index.less";
 

@@ -1,12 +1,13 @@
-import { HashRouter } from "react-router-dom";
-import Router from "./routers/index";
 import enUS from "antd/locale/en_US";
 import zhCN from "antd/locale/zh_CN";
-import { ConfigProvider } from "antd";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "./redux";
+import Router from "./routers/index";
 import AuthRouter from "@/routers/auth";
+import { RootState } from "./redux";
+import { ConfigProvider } from "antd";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { HashRouter } from "react-router-dom";
+
 import "dayjs/locale/zh-cn";
 import "./app.less";
 
@@ -17,6 +18,7 @@ function App() {
     if (lange == "en") setI18nLocale(enUS);
     if (lange == "zhCn") setI18nLocale(zhCN);
   }, [lange]);
+
   return (
     <div className="App">
       <ConfigProvider locale={i18nLocale}>

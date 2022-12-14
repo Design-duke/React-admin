@@ -1,3 +1,3 @@
 export default {
-  Welcome: "欢迎来到这个",
+  Welcome: "欢迎来到Design_duke的React-admin",
 };

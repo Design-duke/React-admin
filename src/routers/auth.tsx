@@ -1,6 +1,6 @@
-import { Navigate, useLocation } from "react-router-dom";
 import { routers } from "./index";
 import { searchRoute } from "@/utils/utils";
+import { Navigate, useLocation } from "react-router-dom";
 
 const AuthRouter = (props: { children: JSX.Element }) => {
   const { pathname } = useLocation();

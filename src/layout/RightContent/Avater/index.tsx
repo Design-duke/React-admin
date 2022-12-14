@@ -1,8 +1,8 @@
 import { Avatar } from "antd";
 import type { MenuProps } from "antd";
-import HeaderDropdown from "@/layout/HeaderDropdown/index";
-import { LogoutOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import { LogoutOutlined } from "@ant-design/icons";
+import HeaderDropdown from "@/layout/HeaderDropdown/index";
 
 import "../index.less";
 
@@ -33,7 +33,7 @@ function AvatarDropdown() {
           size="small"
           className="avatar"
           style={{ marginRight: "8px" }}
-          src="https://joeschmoe.io/api/v1/random"
+          src="https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png"
           alt="avatar"
         />
         <span className={`name anticon`}>Design_duke</span>

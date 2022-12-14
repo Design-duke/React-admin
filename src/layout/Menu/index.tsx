@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import Items from "./item";
 import { Menu } from "antd";
 import type { MenuProps } from "antd";
-import Items from "./item";
-import { useLocation } from "react-router-dom";
-import { getOpenKeys } from "@/utils/utils";
 import * as Icons from "@ant-design/icons";
+import { getOpenKeys } from "@/utils/utils";
+import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
 export default () => {
   const { pathname } = useLocation();
@@ -64,6 +64,7 @@ export default () => {
     setSelectedKeys([pathname]);
     setOpenKeys(getOpenKeys(pathname));
   }, [pathname]);
+
   return (
     <Menu
       theme="dark"

@@ -1,6 +1,6 @@
-import { SearchOutlined } from "@ant-design/icons";
-import { Button, Card, Form, Input } from "antd";
 import { useTranslation } from "react-i18next";
+import { Button, Card, Form, Input } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
 
 const SearchForm = (props: { search: any }) => {
   const { t } = useTranslation();
@@ -13,6 +13,7 @@ const SearchForm = (props: { search: any }) => {
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
+
   return (
     <Card bordered={false}>
       <Form
