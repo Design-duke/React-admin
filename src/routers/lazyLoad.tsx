@@ -1,7 +1,7 @@
 import { Spin } from "antd";
 import { Suspense } from "react";
 
-const lazyLoad = (Comp: React.LazyExoticComponent<any>) => {
+const lazyLoad = (Component: React.LazyExoticComponent<any>) => {
   return (
     <Suspense
       fallback={
@@ -16,7 +16,7 @@ const lazyLoad = (Comp: React.LazyExoticComponent<any>) => {
         />
       }
     >
-      <Comp />
+      <Component />
     </Suspense>
   );
 };

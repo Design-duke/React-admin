@@ -18,7 +18,7 @@ function Index({}: Props) {
       <Button type="primary" onClick={add} style={{ marginRight: "8px" }}>
         点我加
       </Button>
-      <Reduce reduce={reduce}></Reduce>
+      <Reduce reduce={reduce} />
     </>
   );
 }

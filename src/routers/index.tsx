@@ -1,13 +1,14 @@
-import Layout from "../layout/index";
-import Home from "../pages/Home/index";
-import Table from "../pages/table/index";
-import Count from "../pages/reduxCount/index";
-import Result from "../pages/404";
-import Login from "../pages/Login/index";
 import lazyLoad from "./lazyLoad";
+import NotFound from "@/pages/404";
+import Layout from "@/layout/index";
+import Home from "@/pages/Home/index";
+import Login from "@/pages/Login/index";
+import Table from "@/pages/table/index";
 import GitHub from "@/pages/github/index";
+import Count from "@/pages/reduxCount/index";
 import { lazy } from "react";
 import { Navigate, useRoutes } from "react-router-dom";
+
 // const modules: any = import.meta.glob("../pages/*/*.tsx");
 // for (const path in modules) {
 //   modules[path]().then((mod: any) => {
@@ -51,10 +52,10 @@ export const routers: any = [
         auth: true,
         element: <GitHub />,
       },
-      { path: "*", element: <Result /> },
+      { path: "*", element: <NotFound /> },
     ],
   },
-  { path: "*", element: <Result /> },
+  { path: "*", element: <NotFound /> },
 ];
 
 const Router = () => {

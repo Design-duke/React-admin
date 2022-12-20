@@ -71,14 +71,14 @@ function Home() {
             icon={<EditOutlined />}
             size="small"
             onClick={() => editHandel(nodeData)}
-          ></Button>
+          />
           <Button
             type="primary"
             danger
             icon={<DeleteOutlined />}
             size="small"
             onClick={() => delHandel(nodeData)}
-          ></Button>
+          />
         </div>
       </div>
     );

@@ -1,7 +1,7 @@
 import { Button, Result } from "antd";
 import { useNavigate } from "react-router-dom";
 
-function Resul() {
+function NotFound() {
   const navigate = useNavigate();
   const backHome = () => {
     navigate("Home");
@@ -21,4 +21,4 @@ function Resul() {
   );
 }
 
-export default Resul;
+export default NotFound;
