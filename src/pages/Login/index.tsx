@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Button, Form, Input, message } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { LoginApi } from "@/services/Login";
 
 import "./index.less";
 

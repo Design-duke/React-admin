@@ -1,23 +1,15 @@
-import request from "../utils/request";
+import request from "@/utils/request";
 
-export const getRequestApi = (params: string) => {
-  return request({
+export const getRequestApi = (params: Object) =>
+  request({
     url: "",
     method: "GET",
     params,
   });
-};
-export const postRequestApi = (data: string) => {
-  return request({
+
+export const postRequestApi = (data: Object) =>
+  request({
     url: "",
     method: "POST",
     data,
   });
-};
-export const getStoreInfoApi = (params: any) => {
-  return request({
-    url: "/getStoreInfo",
-    method: "GET",
-    params,
-  });
-};

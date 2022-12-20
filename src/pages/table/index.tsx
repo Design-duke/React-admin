@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useRef, useState } from "react";
 import { Table, Button, message, Popconfirm } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { getStoreInfoApi } from "@/services";
 
 function Tables() {
   const { t } = useTranslation();
