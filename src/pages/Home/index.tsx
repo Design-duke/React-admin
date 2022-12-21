@@ -60,42 +60,42 @@ function Home() {
   const delHandel = (row: any) => {
     console.log(row);
   };
-  const titleRender = (nodeData: any) => {
-    return (
-      <div className="box">
-        <div className="title">{nodeData.title}</div>
-        <div className="rightButton">
-          <Button
-            type="primary"
-            className="rightButtonLeft"
-            icon={<EditOutlined />}
-            size="small"
-            onClick={() => editHandel(nodeData)}
-          />
-          <Button
-            type="primary"
-            danger
-            icon={<DeleteOutlined />}
-            size="small"
-            onClick={() => delHandel(nodeData)}
-          />
-        </div>
+  const titleRender = (nodeData: any) => (
+    <div className="box">
+      <div className="title">{nodeData.title}</div>
+      <div className="rightButton">
+        <Button
+          type="primary"
+          className="rightButtonLeft"
+          icon={<EditOutlined />}
+          size="small"
+          onClick={() => editHandel(nodeData)}
+        />
+        <Button
+          type="primary"
+          danger
+          icon={<DeleteOutlined />}
+          size="small"
+          onClick={() => delHandel(nodeData)}
+        />
       </div>
-    );
-  };
+    </div>
+  );
+
   const { t, i18n } = useTranslation();
   useEffect(() => {
-    setInterval(() => {
+    let timer = setInterval(() => {
       setTime(new Date().toLocaleTimeString());
     }, 1000);
-  });
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
 
   return (
     <div>
-      <Title level={2}>{t("Home.Welcome")}</Title>
-      {/* <h1 text="前端简单说" className="jianb">
-        前端简单说
-      </h1> */}
+      {/* @ts-ignore */}
+      <h1 text={t("Home.Welcome")}>{t("Home.Welcome")}</h1>
       <DatePicker defaultValue={dayjs()} />
       <Title>{time}</Title>
       <Tree

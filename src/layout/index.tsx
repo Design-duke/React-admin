@@ -23,13 +23,12 @@ function App() {
   };
   // 监听窗口大小变化
   const listeningWindow = () => {
-    window.onresize = () => {
-      return (() => {
+    window.onresize = () =>
+      (() => {
         let screenWidth = document.body.clientWidth;
         if (!collapsed && screenWidth < 1200) dispatch(setIsCollapse(true));
         if (!collapsed && screenWidth > 1200) dispatch(setIsCollapse(false));
       })();
-    };
   };
   useEffect(() => {
     listeningWindow();

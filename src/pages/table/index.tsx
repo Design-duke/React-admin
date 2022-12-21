@@ -2,18 +2,18 @@ import ModelForm from "./Pop-ups/index";
 import SearchForm from "./searchForm/index";
 import { useTranslation } from "react-i18next";
 import { useEffect, useRef, useState } from "react";
-import { Table, Button, message, Popconfirm } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { Table, Button, message, Popconfirm, Space } from "antd";
 
 function Tables() {
   const { t } = useTranslation();
   const ModelFor: any = useRef(null);
-  const confirm = (e: any) => {
-    console.log(e);
+  const confirm = (text: any, record: any, index: any) => {
+    const newData = dataSource.filter((item) => item.key !== record.key);
+    setDataSource(newData);
     message.success("Click on Yes");
   };
-  const cancel = (e: any) => {
-    console.log(e);
+  const cancel = () => {
     message.error("Click on No");
   };
   const handleEdit = (text: any, record: any, index: any) => {
@@ -42,45 +42,57 @@ function Tables() {
     pageSize: 10,
     total: 0,
   });
-  const [dataSource, setDataSource] = useState<DataType[]>([]);
+  const [dataSource, setDataSource] = useState<DataType[]>([
+    {
+      key: 1,
+      name: "小明",
+      age: 26,
+      address: "浙江省杭州市西湖区西溪路",
+    },
+    {
+      key: 2,
+      name: "老王",
+      age: 30,
+      address: "浙江省杭州市西湖区西溪路隔壁",
+    },
+  ]);
   const columns = [
     {
       title: t("Table.columns.name"),
+      dataIndex: "name",
       key: "name",
-      render: (prop: any, row: any, index: any) => (
-        <>{row.id + "-" + row.name}</>
-      ),
     },
     {
       title: t("Table.columns.age"),
-      dataIndex: "phone",
+      dataIndex: "age",
       key: "2",
     },
     {
       title: t("Table.columns.address"),
-      dataIndex: "email",
+      dataIndex: "address",
       key: "3",
     },
     {
       title: t("Table.columns.operate"),
       key: "操作",
       render: (text: any, record: any, index: any) => (
-        <>
+        <Space>
           <Button
             type="primary"
             icon={<EditOutlined />}
             onClick={() => handleEdit(text, record, index)}
-          ></Button>{" "}
+          />
+
           <Popconfirm
             title="Are you sure to delete this task?"
-            onConfirm={confirm}
+            onConfirm={() => confirm(text, record, index)}
             onCancel={cancel}
             okText="Yes"
             cancelText="No"
           >
-            <Button type="primary" danger icon={<DeleteOutlined />}></Button>
+            <Button type="primary" danger icon={<DeleteOutlined />} />
           </Popconfirm>
-        </>
+        </Space>
       ),
     },
   ];
@@ -105,7 +117,7 @@ function Tables() {
       <Table
         dataSource={dataSource}
         columns={columns}
-        rowKey={(row: any) => row.id}
+        rowKey={(row: any) => row.key}
         pagination={pagination}
         onChange={pageOnchange}
         loading={loading}

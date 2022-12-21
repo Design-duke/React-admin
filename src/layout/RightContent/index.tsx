@@ -5,12 +5,11 @@ import { Space } from "antd";
 
 import "../index.less";
 
-const GlobalHeaderRight: React.FC = () => {
-  return (
-    <Space>
-      <Avater />
-      <Language />
-    </Space>
-  );
-};
+const GlobalHeaderRight: React.FC = () => (
+  <Space>
+    <Avater />
+    <Language />
+  </Space>
+);
+
 export default GlobalHeaderRight;

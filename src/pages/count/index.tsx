@@ -1,6 +1,6 @@
 import Reduce from "./reduce";
 import { useState } from "react";
-import { Button, Typography } from "antd";
+import { Button, Typography, Space } from "antd";
 type Props = {};
 const { Title } = Typography;
 function Index({}: Props) {
@@ -15,10 +15,12 @@ function Index({}: Props) {
   return (
     <>
       <Title>{count}</Title>
-      <Button type="primary" onClick={add} style={{ marginRight: "8px" }}>
-        点我加
-      </Button>
-      <Reduce reduce={reduce} />
+      <Space>
+        <Button type="primary" onClick={add}>
+          点我加
+        </Button>
+        <Reduce reduce={reduce} />
+      </Space>
     </>
   );
 }

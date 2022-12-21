@@ -2,6 +2,7 @@ import count from "./models/count";
 import language from "./models/language";
 import collapsed from "./models/layout";
 import { configureStore } from "@reduxjs/toolkit";
+
 export const store = configureStore({
   reducer: {
     count,

@@ -28,6 +28,7 @@ function Login() {
         >
           <Input size="large" prefix={<UserOutlined />} placeholder="admin" />
         </Form.Item>
+
         <Form.Item
           name="password"
           rules={[{ required: true, message: "Please input your Password!" }]}
@@ -38,6 +39,7 @@ function Login() {
             placeholder="12345"
           />
         </Form.Item>
+
         <Form.Item>
           <Button
             size="large"

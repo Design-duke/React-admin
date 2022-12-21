@@ -45,7 +45,7 @@ export const routers: any = [
       {
         path: "subOne/communication",
         auth: true,
-        element: lazyLoad(lazy(() => import("../pages/count/index"))),
+        element: lazyLoad(lazy(() => import("@/pages/count/index"))),
       },
       {
         path: "subTwo/link",

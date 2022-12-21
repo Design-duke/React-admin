@@ -5,7 +5,7 @@ const service: AxiosInstance = axios.create({
   timeout: 10000,
 });
 
-export const loginApi = (data: any) =>
+export const loginApi = (data: Object) =>
   service({
     url: "/sys/login",
     method: "POST",

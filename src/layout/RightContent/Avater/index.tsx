@@ -32,7 +32,6 @@ function AvatarDropdown() {
         <Avatar
           size="small"
           className="avatar"
-          style={{ marginRight: "8px" }}
           src="https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png"
           alt="avatar"
         />
