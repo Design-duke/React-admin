@@ -6,6 +6,7 @@ export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
 
   return {
+    base: "./",
     define: {
       __APP_ENV__: env.APP_ENV,
     },
@@ -35,12 +36,27 @@ export default defineConfig(({ command, mode }) => {
       // },
       rollupOptions: {
         output: {
-          // Static resource classification and packaging
           chunkFileNames: "assets/js/[name]-[hash].js",
           entryFileNames: "assets/js/[name]-[hash].js",
           assetFileNames: "assets/[ext]/[name]-[hash].[ext]",
+          manualChunks(id) {
+            if (id.includes("node_modules")) {
+              return id
+                .toString()
+                .split("node_modules/")[1]
+                .split("/")[0]
+                .toString();
+            }
+          },
         },
       },
+      // terserOptions: {
+      //   compress: {
+      //     drop_console:
+      //       process.env.VITE_NODE_ENV === "production" ? true : false,
+      //     drop_debugger: true,
+      //   },
+      // },
     },
     resolve: {
       alias: {

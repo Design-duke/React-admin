@@ -1,6 +1,6 @@
 import axios, {
   AxiosError,
-  AxiosRequestConfig,
+  InternalAxiosRequestConfig,
   AxiosResponse,
   AxiosInstance,
 } from "axios";
@@ -11,7 +11,7 @@ const service: AxiosInstance = axios.create({
 });
 // 请求前的统一处理
 service.interceptors.request.use(
-  (config: AxiosRequestConfig) => {
+  (config: InternalAxiosRequestConfig) => {
     // JWT鉴权处理
     //@ts-ignore
     config.headers.token = JSON.parse(localStorage.getItem("token") || "");
