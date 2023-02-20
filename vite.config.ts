@@ -8,16 +8,17 @@ export default defineConfig(({ command, mode }) => {
   return {
     base: "./",
     define: {
+      //加载.env文件
       __APP_ENV__: env.APP_ENV,
     },
-    plugins: [react()],
+
     server: {
       base: "./",
       host: "0.0.0.0",
       open: true,
       proxy: {
         "/dev": {
-          target: "http://",
+          target: "http://47.114.113.169:8061",
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/dev/, ""),
         },
@@ -27,13 +28,6 @@ export default defineConfig(({ command, mode }) => {
       outDir: "dist",
       // esbuild 打包更快，但是不能去除 console.log，去除 console 使用 terser 模式
       minify: "esbuild",
-      // minify: "terser",
-      // terserOptions: {
-      // 	compress: {
-      // 		drop_console: viteEnv.VITE_DROP_CONSOLE,
-      // 		drop_debugger: true
-      // 	}
-      // },
       rollupOptions: {
         output: {
           chunkFileNames: "assets/js/[name]-[hash].js",
@@ -50,10 +44,11 @@ export default defineConfig(({ command, mode }) => {
           },
         },
       },
+
+      // minify: "terser",
       // terserOptions: {
       //   compress: {
-      //     drop_console:
-      //       process.env.VITE_NODE_ENV === "production" ? true : false,
+      //     drop_console: env.ENV === "production" ? true : false,
       //     drop_debugger: true,
       //   },
       // },
@@ -63,5 +58,6 @@ export default defineConfig(({ command, mode }) => {
         "@": resolve(__dirname, "./src"),
       },
     },
+    plugins: [react()],
   };
 });
