@@ -11,14 +11,13 @@ export default defineConfig(({ command, mode }) => {
       //加载.env文件
       __APP_ENV__: env.APP_ENV,
     },
-
     server: {
       base: "./",
       host: "0.0.0.0",
       open: true,
       proxy: {
         "/dev": {
-          target: "http://47.114.113.169:8061",
+          target: "http://",
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/dev/, ""),
         },
