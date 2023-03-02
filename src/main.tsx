@@ -7,7 +7,5 @@ import "./index.less";
 import "./locales/index";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <Provider store={store}>
-    <App />
-  </Provider>
+  <Provider store={store} children={<App />} />
 );
