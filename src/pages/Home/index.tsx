@@ -1,110 +1,61 @@
-import dayjs from "dayjs";
-import customParseFormat from "dayjs/plugin/customParseFormat";
+import { DollarOutlined, ContainerOutlined } from "@ant-design/icons";
+import { Card, Statistic, Space, Row, Col } from "antd";
 import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import type { DataNode, TreeProps } from "antd/es/tree";
-import { Button, DatePicker, Tree, Typography } from "antd";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import CountUp from "react-countup";
+import LineChart from "./lineChart";
+import ColumnChart from "./columnChart";
+import FooterCard from "./footerCard/index";
 
 import "./index.less";
-dayjs.extend(customParseFormat);
-
-const { Title } = Typography;
 
 function Home() {
-  const [time, setTime] = useState(new Date().toLocaleTimeString());
-  const treeData: DataNode[] = [
+  const [cardTitle, setCardTitle] = useState([
     {
-      title: "parent 1",
-      key: "0-0",
-      children: [
-        {
-          title: "parent 1-0",
-          key: "0-0-0",
-          children: [
-            {
-              title: "leaf",
-              key: "0-0-0-0",
-              disableCheckbox: true,
-            },
-            {
-              title: "leaf",
-              key: "0-0-0-1",
-            },
-          ],
-        },
-        {
-          title: "parent 1-1",
-          key: "0-0-1",
-          children: [
-            {
-              title: <span style={{ color: "#1890ff" }}>sss</span>,
-              key: "0-0-1-0",
-            },
-          ],
-        },
-      ],
+      title: "今日订单总数",
+      value: 110,
+      prefix: <ContainerOutlined style={{ color: "rgb(18,150,219)" }} />,
     },
-  ];
-  const onSelect: TreeProps["onSelect"] = (selectedKeys, info) => {
-    console.log("selected", selectedKeys, info);
-  };
+    {
+      title: "今日销售总额",
+      value: 213.06,
+      prefix: <DollarOutlined style={{ color: "rgb(18,150,219)" }} />,
+    },
+    {
+      title: "昨日销售总额",
+      value: 3333.66,
+      prefix: <DollarOutlined style={{ color: "rgb(18,150,219)" }} />,
+    },
+  ]);
 
-  const onCheck: TreeProps["onCheck"] = (checkedKeys, info) => {
-    console.log("onCheck", checkedKeys, info);
-  };
-  const editHandel = (row: any) => {
-    console.log(row);
-    return false;
-  };
-  const delHandel = (row: any) => {
-    console.log(row);
-  };
-  const titleRender = (nodeData: any) => (
-    <div className="box">
-      <div className="title">{nodeData.title}</div>
-      <div className="rightButton">
-        <Button
-          type="primary"
-          className="rightButtonLeft"
-          icon={<EditOutlined />}
-          size="small"
-          onClick={() => editHandel(nodeData)}
-        />
-        <Button
-          type="primary"
-          danger
-          icon={<DeleteOutlined />}
-          size="small"
-          onClick={() => delHandel(nodeData)}
-        />
-      </div>
-    </div>
+  const formatter: any = (value: number) => (
+    <CountUp end={value} separator="," decimals={2} />
   );
 
-  const { t, i18n } = useTranslation();
-  useEffect(() => {
-    let timer = setInterval(() => {
-      setTime(new Date().toLocaleTimeString());
-    }, 1000);
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
+  useEffect(() => {}, []);
 
   return (
-    <div>
-      {/* @ts-ignore */}
-      <h1 text={t("Home.Welcome")}>{t("Home.Welcome")}</h1>
-      <DatePicker defaultValue={dayjs()} />
-      <Title>{time}</Title>
-      <Tree
-        onSelect={onSelect}
-        onCheck={onCheck}
-        treeData={treeData}
-        showLine
-        titleRender={titleRender}
-      />
+    <div className="box-wrapper">
+      <Space direction="vertical" size="middle" style={{ display: "flex" }}>
+        <div className="site-card-wrapper">
+          <Row gutter={16}>
+            {cardTitle.map((item) => (
+              <Col span={8} key={item.title}>
+                <Card title={item.title} bordered={false}>
+                  <Statistic
+                    precision={2}
+                    value={item.value}
+                    prefix={item.prefix}
+                    formatter={formatter}
+                  />
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </div>
+        <LineChart />
+        <ColumnChart />
+        <FooterCard />
+      </Space>
     </div>
   );
 }
