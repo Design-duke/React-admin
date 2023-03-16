@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { HashRouter } from "react-router-dom";
 
-import "dayjs/locale/zh-cn";
 import "./app.less";
 
 function App() {
