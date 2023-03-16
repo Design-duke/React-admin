@@ -61,8 +61,11 @@ export default () => {
   // 刷新页面菜单保持高亮
   useEffect(() => {
     setSelectedKeys([pathname]);
-    setOpenKeys(getOpenKeys(pathname));
   }, [pathname]);
+
+  useEffect(() => {
+    setOpenKeys(getOpenKeys(pathname));
+  }, []);
 
   return (
     <Menu
