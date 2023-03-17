@@ -1,7 +1,7 @@
 import type { RootState } from "@/redux/index";
 import { Button, Typography, Space } from "antd";
 import { useSelector, useDispatch } from "react-redux";
-import { decrement, increment } from "@/redux/models/count";
+import { decrement, increment } from "@/redux/modules/count";
 
 const { Title } = Typography;
 

@@ -1,13 +1,13 @@
-import count from "./models/count";
-import language from "./models/language";
-import collapsed from "./models/layout";
 import { configureStore } from "@reduxjs/toolkit";
+const files: any = import.meta.glob("./modules/*.ts", { eager: true });
+const modules: any = {};
+for (const key in files) {
+  modules[key.replace(/(\.\/modules\/|\.ts)/g, "")] = files[key].default;
+}
 
 export const store = configureStore({
   reducer: {
-    count,
-    language,
-    collapsed,
+    ...modules,
   },
 });
 

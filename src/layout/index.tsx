@@ -5,7 +5,7 @@ import { Layout } from "antd";
 import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import type { RootState } from "@/redux/index";
-import { setIsCollapse } from "@/redux/models/layout";
+import { setIsCollapse } from "@/redux/modules/collapsed";
 import { useSelector, useDispatch } from "react-redux";
 
 import "./index.less";
