@@ -1,10 +1,11 @@
 import Reduce from "./reduce";
 import { useState } from "react";
-import { Button, Typography, Space } from "antd";
+import { Button, Typography, Space, message } from "antd";
 type Props = {};
 const { Title } = Typography;
 function Index({}: Props) {
   const [count, setCount] = useState(0);
+  const [messageApi, contextHolder] = message.useMessage();
   const add = () => {
     setCount((v) => v + 1);
   };
@@ -12,6 +13,9 @@ function Index({}: Props) {
     setCount((v) => v - 1);
   };
 
+  const info = () => {
+    messageApi.info("This is a normal message");
+  };
   return (
     <>
       <Title>{count}</Title>
@@ -20,6 +24,10 @@ function Index({}: Props) {
           点我加
         </Button>
         <Reduce reduce={reduce} />
+        {contextHolder}
+        <Button type="primary" onClick={info}>
+          Message
+        </Button>
       </Space>
     </>
   );
