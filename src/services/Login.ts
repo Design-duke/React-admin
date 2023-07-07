@@ -1,13 +1,13 @@
-import axios, { type AxiosInstance } from "axios";
+import { extend } from "umi-request";
+
 const baseURL: any = import.meta.env.VITE_BASE_URL;
-const service: AxiosInstance = axios.create({
-  baseURL: baseURL,
+const request = extend({
+  prefix: baseURL,
   timeout: 10000,
 });
 
 export const loginApi = (data: Object) =>
-  service({
-    url: "/sys/login",
+  request("/sys/login", {
     method: "POST",
     data,
   });

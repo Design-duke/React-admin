@@ -7,7 +7,7 @@
 - UI 框架：antd v5
 - 路由管理：React-router v6
 - 状态管理：reduxjs/toolkit
-- 数据请求：axios
+- 数据请求：umi-request
 - 国际化配置：react-i18next
 
 ## 使用
