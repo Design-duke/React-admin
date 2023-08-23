@@ -6,7 +6,7 @@ import LineChart from "./lineChart";
 import ColumnChart from "./columnChart";
 import FooterCard from "./footerCard/index";
 
-import "./index.less";
+import styles from "./index.module.less";
 
 function Home() {
   const [cardTitle, setCardTitle] = useState([
@@ -34,9 +34,9 @@ function Home() {
   useEffect(() => {}, []);
 
   return (
-    <div className="box-wrapper">
+    <div className={styles.boxWrapper}>
       <Space direction="vertical" size="middle" style={{ display: "flex" }}>
-        <div className="site-card-wrapper">
+        <div className={styles.siteCardWrapper}>
           <Row gutter={16}>
             {cardTitle.map((item) => (
               <Col span={8} key={item.title}>

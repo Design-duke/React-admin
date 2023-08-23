@@ -1,5 +1,6 @@
 import ModelForm from "./Pop-ups/index";
 import SearchForm from "./searchForm/index";
+import { useImmer } from "use-immer";
 import { useTranslation } from "react-i18next";
 import { useEffect, useRef, useState } from "react";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
@@ -26,18 +27,17 @@ function Tables() {
     address: string;
   }
   const [loading, setLoading] = useState(false);
-  const pageOnchange = (val: any) => {
-    setPagination({
-      currentPage: val.current,
-      pageSize: val.pageSize,
-      total: val.total,
+  const pageOnchange = (value: any) => {
+    setPagination((v) => {
+      v.currentPage = value.current;
+      v.pageSize = value.pageSize;
     });
     request({
-      currentPage: val.current,
-      pageSize: val.pageSize,
+      currentPage: value.current,
+      pageSize: value.pageSize,
     });
   };
-  const [pagination, setPagination] = useState({
+  const [pagination, setPagination] = useImmer({
     currentPage: 1,
     pageSize: 10,
     total: 0,
@@ -98,12 +98,11 @@ function Tables() {
   ];
   const request = async (params: any) => {
     setLoading(true);
-    // const res = await getStoreInfoApi(params);
+    // const res = await getUsersApi(params);
     // setDataSource(res.data.list);
-    // setPagination({
-    //   ...pagination,
-    //   currentPage: res.data.pageNum,
-    //   total: res.data.total,
+    // setPagination((v) => {
+    //   v.currentPage = res.data.pageNum;
+    //   v.total = res.data.total;
     // });
     setLoading(false);
   };

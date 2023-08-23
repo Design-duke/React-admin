@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Form, Input } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 
-import "./index.less";
+import styles from "./index.module.less";
 
 function Login() {
   const navigate = useNavigate();
@@ -13,12 +13,12 @@ function Login() {
   };
 
   return (
-    <div className="container">
-      <h1>Backend system</h1>
-      <h2>西湖区最具影响力的 Web 设计规范</h2>
+    <div className={styles.container}>
+      <h1 className={styles.containerh1}>Backend system</h1>
+      <h2 className={styles.containerh2}>西湖区最具影响力的 Web 设计规范</h2>
       <Form
         name="normal_login"
-        className="login-form"
+        className={styles.loginForm}
         initialValues={{ remember: true }}
         onFinish={onFinish}
       >
@@ -45,7 +45,7 @@ function Login() {
             size="large"
             type="primary"
             htmlType="submit"
-            className="login-form-button"
+            className={styles.loginFormButton}
           >
             登录
           </Button>

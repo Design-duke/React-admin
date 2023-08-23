@@ -1,6 +1,6 @@
 import { Col, Row, Card, Statistic } from "antd";
 
-import "./index.less";
+import styles from "./index.module.less";
 const FooterCard = () => {
   const gridStyle: React.CSSProperties = {
     width: "33.3%",
@@ -19,7 +19,7 @@ const FooterCard = () => {
   ];
 
   return (
-    <div className="productOverviewBox">
+    <div className={styles.productOverviewBox}>
       <Row gutter={16}>
         <Col span={12}>
           <Card title="商品总览">
