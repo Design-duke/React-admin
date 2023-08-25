@@ -9,13 +9,14 @@ import { Table, Button, message, Popconfirm, Space } from "antd";
 function Tables() {
   const { t } = useTranslation();
   const ModelFor: any = useRef(null);
+  const [messageApi, contextHolder] = message.useMessage();
   const confirm = (text: any, record: any, index: any) => {
     const newData = dataSource.filter((item) => item.key !== record.key);
     setDataSource(newData);
-    message.success("Click on Yes");
+    messageApi.success("Click on Yes");
   };
   const cancel = () => {
-    message.error("Click on No");
+    messageApi.error("Click on No");
   };
   const handleEdit = (text: any, record: any, index: any) => {
     ModelFor.current.showModal(text);
@@ -112,6 +113,7 @@ function Tables() {
 
   return (
     <>
+      {contextHolder}
       <SearchForm search={request} />
       <Table
         dataSource={dataSource}
