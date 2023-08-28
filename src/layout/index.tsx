@@ -54,6 +54,8 @@ function App() {
             style={{
               margin: "10px",
               minHeight: 280,
+              maxHeight: "calc(100vh - 64px - 20px)",
+              overflow: "auto",
             }}
           >
             <Outlet />

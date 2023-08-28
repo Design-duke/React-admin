@@ -6,9 +6,7 @@ for (const key in files) {
 }
 
 export const store = configureStore({
-  reducer: {
-    ...modules,
-  },
+  reducer: modules,
 });
 
 export type RootState = ReturnType<typeof store.getState>;
