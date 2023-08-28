@@ -39,7 +39,9 @@ function App() {
       <Layout style={{ minHeight: "100vh" }}>
         <Sider trigger={null} collapsible collapsed={collapsed}>
           <div className="logo" />
-          <Menu />
+          <div className="menu-container">
+            <Menu />
+          </div>
         </Sider>
         <Layout className="site-layout">
           <Header
