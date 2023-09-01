@@ -1,11 +1,6 @@
 import lazyLoad from "./lazyLoad";
-import NotFound from "@/pages/404";
 import Layout from "@/layout/index";
-import Home from "@/pages/Home/index";
 import Login from "@/pages/Login/index";
-import Table from "@/pages/table/index";
-import GitHub from "@/pages/github/index";
-import Count from "@/pages/reduxCount/index";
 import { lazy } from "react";
 import { Navigate, useRoutes } from "react-router-dom";
 
@@ -21,17 +16,17 @@ export const routers: any = [
       {
         path: "Home",
         auth: true,
-        element: <Home />,
+        element: lazyLoad(lazy(() => import("@/pages/Home/index"))),
       },
       {
         path: "subOne/count",
         auth: true,
-        element: <Count />,
+        element: lazyLoad(lazy(() => import("@/pages/reduxCount/index"))),
       },
       {
         path: "subOne/table",
         auth: true,
-        element: <Table />,
+        element: lazyLoad(lazy(() => import("@/pages/table/index"))),
       },
       {
         path: "subOne/communication",
@@ -41,12 +36,12 @@ export const routers: any = [
       {
         path: "subTwo/link",
         auth: true,
-        element: <GitHub />,
+        element: lazyLoad(lazy(() => import("@/pages/github/index"))),
       },
-      { path: "*", element: <NotFound /> },
+      { path: "*", element: lazyLoad(lazy(() => import("@/pages/404"))) },
     ],
   },
-  { path: "*", element: <NotFound /> },
+  { path: "*", element: lazyLoad(lazy(() => import("@/pages/404"))) },
 ];
 
 const Router = () => {
