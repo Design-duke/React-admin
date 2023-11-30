@@ -13,8 +13,10 @@ export default defineConfig(({ command, mode }) => {
     },
     server: {
       base: "./",
-      host: "0.0.0.0",
+      host: true,
       open: true,
+      port: 8080,
+      hmr: true,
       proxy: {
         "/dev": {
           target: "http://",
