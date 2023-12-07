@@ -15,7 +15,6 @@ export default defineConfig(({ command, mode }) => {
       base: "./",
       host: true,
       open: true,
-      port: 8080,
       hmr: true,
       proxy: {
         "/dev": {
