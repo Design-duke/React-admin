@@ -1,15 +1,12 @@
 import React from "react";
 import Language from "./Language";
 import Avater from "./Avater/index";
-import { Space } from "antd";
-
-import "../index.less";
 
 const GlobalHeaderRight: React.FC = () => (
-  <Space>
+  <div className="flex flex-row items-center justify-center">
     <Avater />
     <Language />
-  </Space>
+  </div>
 );
 
 export default GlobalHeaderRight;

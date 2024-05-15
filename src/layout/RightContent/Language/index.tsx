@@ -1,12 +1,9 @@
-import HeaderDropdown from "@/layout/HeaderDropdown/index";
 import i18n from "i18next";
 import { RootState } from "@/redux";
-import type { MenuProps } from "antd";
+import { Dropdown, type MenuProps } from "antd";
 import { setLanguage } from "@/redux/modules/language";
 import { useDispatch, useSelector } from "react-redux";
 import { TranslationOutlined } from "@ant-design/icons";
-
-import "../index.less";
 
 const index = () => {
   const language = useSelector((state: RootState) => state.language.lange);
@@ -32,9 +29,9 @@ const index = () => {
   ];
 
   return (
-    <HeaderDropdown menu={{ items, onClick }} className="action">
-      <TranslationOutlined style={{ fontSize: "18px" }} />
-    </HeaderDropdown>
+    <Dropdown menu={{ items, onClick }}>
+      <TranslationOutlined className="text-lg cursor-pointer px-3" />
+    </Dropdown>
   );
 };
 

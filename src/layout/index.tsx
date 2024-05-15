@@ -1,25 +1,26 @@
-import Collapsed from "./Collapsed/index";
 import Right from "./RightContent/index";
 import Menu from "./Menu/index";
-import { Layout } from "antd";
-import { useEffect } from "react";
+import { Button, Layout, theme } from "antd";
+import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import type { RootState } from "@/redux/index";
-import { setIsCollapse } from "@/redux/modules/collapsed";
 import { useSelector, useDispatch } from "react-redux";
-
-import "./index.less";
+import { setIsCollapse } from "@/redux/modules/collapsed";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 
 const { Header, Sider, Content } = Layout;
 
-function App() {
+const App: React.FC = () => {
   const dispatch = useDispatch();
   const collapsed = useSelector(
     (state: RootState) => state.collapsed.isCollapse
   );
+  const {
+    token: { colorBgContainer, borderRadiusLG },
+  } = theme.useToken();
 
-  const setCollapsed = () => {
-    dispatch(setIsCollapse(!collapsed));
+  const setCollapsed = (value: boolean) => {
+    dispatch(setIsCollapse(value));
   };
   // 监听窗口大小变化
   const listeningWindow = () => {
@@ -30,42 +31,60 @@ function App() {
         if (!collapsed && screenWidth > 1200) dispatch(setIsCollapse(false));
       })();
   };
+  // 监听窗口大小变化，并只在组件挂载和卸载时添加/移除监听器
   useEffect(() => {
-    listeningWindow();
-  }, []);
+    const handleResize = () => {
+      const screenWidth = document.body.clientWidth;
+      if (screenWidth < 1200) {
+        dispatch(setIsCollapse(true));
+      } else {
+        dispatch(setIsCollapse(false));
+      }
+    };
 
+    window.addEventListener("resize", handleResize);
+
+    // 清理函数，在组件卸载时移除监听器
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
-    <div className="layout">
-      <Layout style={{ minHeight: "100vh" }}>
-        <Sider trigger={null} collapsible collapsed={collapsed}>
-          <div className="logo" />
-          <div className="menu-container">
-            <Menu />
-          </div>
-        </Sider>
-        <Layout className="site-layout">
-          <Header
-            className="site-layout-background header"
-            style={{ padding: "0 16px 0 0" }}
-          >
-            <Collapsed collapsed={collapsed} setCollapsed={setCollapsed} />
-            <Right />
-          </Header>
-          <Content
-            className="site-layout-background"
-            style={{
-              margin: "10px",
-              minHeight: 280,
-              maxHeight: "calc(100vh - 64px - 20px)",
-              overflow: "auto",
-            }}
-          >
-            <Outlet />
-          </Content>
-        </Layout>
+    <Layout>
+      <Sider trigger={null} collapsible collapsed={collapsed}>
+        <div className="m-4 h-8 bg-gray-300" />
+        <div style={{ height: "calc(100vh - 64px)" }}>
+          <Menu />
+        </div>
+      </Sider>
+      <Layout>
+        <Header
+          style={{ padding: 0, background: colorBgContainer }}
+          className="flex items-center justify-between"
+        >
+          <Button
+            type="text"
+            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            onClick={() => setCollapsed(!collapsed)}
+            style={{ fontSize: "16px", width: 64, height: 64 }}
+          />
+          <Right />
+        </Header>
+        <Content
+          className="m-[10px]"
+          style={{
+            minHeight: 280,
+            maxHeight: "calc(100vh - 64px - 20px)",
+            overflow: "auto",
+            background: colorBgContainer,
+            borderRadius: borderRadiusLG,
+          }}
+        >
+          <Outlet />
+        </Content>
       </Layout>
-    </div>
+    </Layout>
   );
-}
+};
 
 export default App;

@@ -1,14 +1,12 @@
 import { DollarOutlined, ContainerOutlined } from "@ant-design/icons";
 import { Card, Statistic, Space, Row, Col } from "antd";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import CountUp from "react-countup";
 import LineChart from "./lineChart";
 import ColumnChart from "./columnChart";
 import FooterCard from "./footerCard/index";
 
-import styles from "./index.module.less";
-
-function Home() {
+const Home: React.FC = () => {
   const [cardTitle, setCardTitle] = useState([
     {
       title: "今日订单总数",
@@ -34,9 +32,9 @@ function Home() {
   useEffect(() => {}, []);
 
   return (
-    <div className={styles.boxWrapper}>
+    <div className="bg-zinc-100 p-6">
       <Space direction="vertical" size="middle" style={{ display: "flex" }}>
-        <div className={styles.siteCardWrapper}>
+        <div className="p-5">
           <Row gutter={16}>
             {cardTitle.map((item) => (
               <Col span={8} key={item.title}>
@@ -58,6 +56,6 @@ function Home() {
       </Space>
     </div>
   );
-}
+};
 
 export default Home;

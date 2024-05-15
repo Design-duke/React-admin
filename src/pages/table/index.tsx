@@ -1,48 +1,29 @@
 import ModelForm from "./Pop-ups/index";
 import SearchForm from "./searchForm/index";
+import React, { useEffect, useRef, useState } from "react";
+import { message, Table, Button, Popconfirm, Space } from "antd";
 import { useImmer } from "use-immer";
 import { useTranslation } from "react-i18next";
-import { useEffect, useRef, useState } from "react";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { Table, Button, message, Popconfirm, Space } from "antd";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
-function Tables() {
+// 定义表格数据类型
+interface DataType {
+  key: number;
+  name: string;
+  age: number;
+  address: string;
+}
+
+// 定义ModelForm的引用类型
+type ModelRefType = {
+  showModal: (text: DataType) => void;
+};
+
+const Tables: React.FC = () => {
   const { t } = useTranslation();
-  const ModelFor: any = useRef(null);
+  const modelFormRef = useRef<ModelRefType>(null);
   const [messageApi, contextHolder] = message.useMessage();
-  const confirm = (text: any, record: any, index: any) => {
-    const newData = dataSource.filter((item) => item.key !== record.key);
-    setDataSource(newData);
-    messageApi.success("Click on Yes");
-  };
-  const cancel = () => {
-    messageApi.error("Click on No");
-  };
-  const handleEdit = (text: any, record: any, index: any) => {
-    ModelFor.current.showModal(text);
-  };
-  interface DataType {
-    key: number;
-    name: string;
-    age: number;
-    address: string;
-  }
   const [loading, setLoading] = useState(false);
-  const pageOnchange = (value: any) => {
-    setPagination((v) => {
-      v.currentPage = value.current;
-      v.pageSize = value.pageSize;
-    });
-    request({
-      currentPage: value.current,
-      pageSize: value.pageSize,
-    });
-  };
-  const [pagination, setPagination] = useImmer({
-    currentPage: 1,
-    pageSize: 10,
-    total: 0,
-  });
   const [dataSource, setDataSource] = useState<DataType[]>([
     {
       key: 1,
@@ -57,39 +38,67 @@ function Tables() {
       address: "浙江省杭州市西湖区西溪路隔壁",
     },
   ]);
+  const [pagination, setPagination] = useImmer({
+    currentPage: 1,
+    pageSize: 10,
+    total: 0,
+  });
+
+  // 操作栏处理函数
+  const handleAction = (type: "edit" | "delete", record: DataType) => {
+    if (type === "edit") {
+      modelFormRef.current?.showModal(record);
+    } else {
+      const newData = dataSource.filter((item) => item.key !== record.key);
+      setDataSource(newData);
+      messageApi.success(t("Table.deleteSuccess"));
+    }
+  };
+
+  // 分页变化时触发
+  const handlePageChange = (page: number, pageSize: number) => {
+    setPagination((draft) => {
+      draft.currentPage = page;
+      draft.pageSize = pageSize;
+    });
+    fetchData({ pageNum: page, pageSize });
+  };
+
+  // 数据获取模拟函数，需替换为真实API调用
+  const fetchData = async (params: any) => {
+    setLoading(true);
+    // const res = await getUsersApi(params);
+    // setDataSource(res.data.list);
+    // setPagination(draft => {
+    //   draft.total = res.data.total;
+    // });
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    // fetchData(pagination);
+  }, [pagination]);
+
+  // 定义表格列
   const columns = [
-    {
-      title: t("Table.columns.name"),
-      dataIndex: "name",
-      key: "name",
-    },
-    {
-      title: t("Table.columns.age"),
-      dataIndex: "age",
-      key: "2",
-    },
-    {
-      title: t("Table.columns.address"),
-      dataIndex: "address",
-      key: "3",
-    },
+    { title: t("Table.columns.name"), dataIndex: "name", key: "name" },
+    { title: t("Table.columns.age"), dataIndex: "age", key: "age" },
+    { title: t("Table.columns.address"), dataIndex: "address", key: "address" },
     {
       title: t("Table.columns.operate"),
-      key: "操作",
-      render: (text: any, record: any, index: any) => (
-        <Space>
+      key: "operate",
+      render: (_: any, record: DataType) => (
+        <Space size="small">
           <Button
             type="primary"
             icon={<EditOutlined />}
-            onClick={() => handleEdit(text, record, index)}
+            onClick={() => handleAction("edit", record)}
           />
-
           <Popconfirm
-            title="Are you sure to delete this task?"
-            onConfirm={() => confirm(text, record, index)}
-            onCancel={cancel}
-            okText="Yes"
-            cancelText="No"
+            title={t("Table.deleteConfirm")}
+            onConfirm={() => handleAction("delete", record)}
+            okText={t("Table.yes")}
+            cancelText={t("Table.no")}
           >
             <Button type="primary" danger icon={<DeleteOutlined />} />
           </Popconfirm>
@@ -97,35 +106,24 @@ function Tables() {
       ),
     },
   ];
-  const request = async (params: any) => {
-    setLoading(true);
-    // const res = await getUsersApi(params);
-    // setDataSource(res.data.list);
-    // setPagination((v) => {
-    //   v.currentPage = res.data.pageNum;
-    //   v.total = res.data.total;
-    // });
-    setLoading(false);
-  };
-  useEffect(() => {
-    request(pagination);
-  }, []);
 
   return (
     <>
       {contextHolder}
-      <SearchForm search={request} />
+      <SearchForm search={fetchData} />
       <Table
         dataSource={dataSource}
         columns={columns}
-        rowKey={(row: any) => row.key}
-        pagination={pagination}
-        onChange={pageOnchange}
+        rowKey="key"
+        pagination={{
+          ...pagination,
+          onChange: handlePageChange,
+        }}
         loading={loading}
       />
-      <ModelForm ref={ModelFor} />
+      <ModelForm ref={modelFormRef} />
     </>
   );
-}
+};
 
 export default Tables;

@@ -1,7 +1,18 @@
 import { Modal, Form, Input } from "antd";
-import { useImperativeHandle, useState, forwardRef, Ref } from "react";
+import { useImperativeHandle, forwardRef, useState } from "react";
 
-function Model(_props: any, ref: Ref<unknown> | undefined) {
+interface ModalFormData {
+  key?: string;
+  name: string;
+  age: string;
+  address: string;
+}
+
+interface ModalFormRef {
+  showModal: (initialValues: Partial<ModalFormData>) => void;
+}
+
+const ModalForm = forwardRef<ModalFormRef>((_, ref) => {
   const { TextArea } = Input;
   const layout = {
     labelCol: { span: 6 },
@@ -27,9 +38,9 @@ function Model(_props: any, ref: Ref<unknown> | undefined) {
     }, 100);
   };
 
-  useImperativeHandle(ref, () => {
-    return { showModal };
-  });
+  useImperativeHandle(ref, () => ({
+    showModal,
+  }));
 
   return (
     <Modal
@@ -39,9 +50,15 @@ function Model(_props: any, ref: Ref<unknown> | undefined) {
       onOk={handleOk}
       onCancel={handleCancel}
     >
-      <Form name="basic" form={form} {...layout} preserve={false}>
-        <Form.Item label="key" name="key" hidden>
-          <Input />
+      <Form
+        name="modalForm"
+        form={form}
+        {...layout}
+        initialValues={{ key: "" }} // 如果需要的话
+      >
+        {/* Hidden field for key */}
+        <Form.Item name="key" noStyle>
+          <Input hidden />
         </Form.Item>
 
         <Form.Item
@@ -53,7 +70,7 @@ function Model(_props: any, ref: Ref<unknown> | undefined) {
         </Form.Item>
 
         <Form.Item
-          label="age"
+          label="Age"
           name="age"
           rules={[{ required: true, message: "Please input your age!" }]}
         >
@@ -61,7 +78,7 @@ function Model(_props: any, ref: Ref<unknown> | undefined) {
         </Form.Item>
 
         <Form.Item
-          label="address"
+          label="Address"
           name="address"
           rules={[{ required: true, message: "Please input your address!" }]}
         >
@@ -70,6 +87,6 @@ function Model(_props: any, ref: Ref<unknown> | undefined) {
       </Form>
     </Modal>
   );
-}
+});
 
-export default forwardRef(Model);
+export default ModalForm;

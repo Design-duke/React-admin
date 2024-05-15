@@ -1,12 +1,14 @@
-import { Avatar } from "antd";
+import { Avatar, Dropdown } from "antd";
 import type { MenuProps } from "antd";
 import { useNavigate } from "react-router-dom";
 import { LogoutOutlined } from "@ant-design/icons";
-import HeaderDropdown from "@/layout/HeaderDropdown/index";
+import React from "react";
 
-import "../index.less";
+const AVATAR_URL =
+  "https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png";
+const USER_NAME = "Design_duke";
 
-function AvatarDropdown() {
+const AvatarDropdown: React.FC = () => {
   const navigate = useNavigate();
   const onClick: MenuProps["onClick"] = ({ key }) => {
     if (key === "logout") {
@@ -27,18 +29,13 @@ function AvatarDropdown() {
   ];
 
   return (
-    <HeaderDropdown menu={{ items, onClick }}>
-      <span className="action account">
-        <Avatar
-          size="small"
-          className="avatar"
-          src="https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png"
-          alt="avatar"
-        />
-        <span className={`name anticon`}>Design_duke</span>
+    <Dropdown menu={{ items, onClick }}>
+      <span className="flex items-center cursor-pointer px-3">
+        <Avatar size="small" className="mr-2 " src={AVATAR_URL} alt="avatar" />
+        <span>{USER_NAME}</span>
       </span>
-    </HeaderDropdown>
+    </Dropdown>
   );
-}
+};
 
 export default AvatarDropdown;
