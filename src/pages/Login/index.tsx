@@ -11,14 +11,18 @@ function Login() {
     localStorage.setItem("Mm", "login");
     navigate("/Home");
   };
-
   return (
-    <div className={styles.container}>
-      <h1 className={styles.containerh1}>Backend system</h1>
-      <h2 className={styles.containerh2}>西湖区最具影响力的 Web 设计规范</h2>
+    <div className="flex flex-col justify-center items-center h-[100vh] bg-[#f0f2f5] overflow-auto bg-[url(@/assets/loginBackGround.png)] bg-cover ">
+      <h1 className="m-0 font-semibold text-[33px] text-black/85">
+        Backend system
+      </h1>
+      <h2 className="text-[#848587] text-[14px] mt-[12px] mb-[40px]">
+        西湖区最具影响力的 Web 设计规范
+      </h2>
       <Form
         name="normal_login"
-        className={styles.loginForm}
+        className="min-w-[328px] max-w-[500px] h-[60vh]"
+        style={{ margin: "0 auto" }}
         initialValues={{ remember: true }}
         onFinish={onFinish}
       >
@@ -45,7 +49,7 @@ function Login() {
             size="large"
             type="primary"
             htmlType="submit"
-            className={styles.loginFormButton}
+            className="w-full"
           >
             登录
           </Button>
