@@ -2,9 +2,9 @@ import { Modal, Form, Input } from "antd";
 import { useImperativeHandle, forwardRef, useState } from "react";
 
 interface ModalFormData {
-  key?: string;
+  key: number;
   name: string;
-  age: string;
+  age: number;
   address: string;
 }
 

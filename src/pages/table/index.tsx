@@ -15,13 +15,13 @@ interface DataType {
 }
 
 // 定义ModelForm的引用类型
-type ModelRefType = {
-  showModal: (text: DataType) => void;
-};
+interface ModalFormRef {
+  showModal: (initialValues: Partial<DataType>) => void;
+}
 
 const Tables: React.FC = () => {
   const { t } = useTranslation();
-  const modelFormRef = useRef<ModelRefType>(null);
+  const modelFormRef = useRef<ModalFormRef | null>(null);
   const [messageApi, contextHolder] = message.useMessage();
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState<DataType[]>([
