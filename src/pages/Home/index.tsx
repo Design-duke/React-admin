@@ -2,8 +2,6 @@ import { DollarOutlined, ContainerOutlined } from "@ant-design/icons";
 import { Card, Statistic, Space, Row, Col } from "antd";
 import React, { useEffect, useState } from "react";
 import CountUp from "react-countup";
-import LineChart from "./lineChart";
-import ColumnChart from "./columnChart";
 import FooterCard from "./footerCard/index";
 
 const Home: React.FC = () => {
@@ -50,8 +48,6 @@ const Home: React.FC = () => {
             ))}
           </Row>
         </div>
-        <LineChart />
-        <ColumnChart />
         <FooterCard />
       </Space>
     </div>

@@ -1,7 +1,7 @@
 {
   "name": "react-admin",
-  "private": true,
   "version": "1.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
     "start": "vite",
@@ -11,34 +11,45 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.3.7",
-    "@ant-design/plots": "^2.2.8",
-    "@reduxjs/toolkit": "^2.2.7",
+    "@reduxjs/toolkit": "^2.5.0",
     "@vitejs/plugin-react": "^4.3.1",
-    "antd": "^5.20.1",
-    "dayjs": "^1.11.12",
-    "i18next": "^23.12.3",
-    "less": "^4.2.0",
+    "antd": "^5.22.7",
+    "dayjs": "^1.11.13",
+    "i18next": "^24.2.0",
+    "less": "^4.2.1",
     "lodash-es": "^4.17.21",
-    "react": "^18.3.1",
+    "react": "^19.0.0",
     "react-countup": "^6.5.3",
-    "react-dom": "^18.3.1",
-    "react-i18next": "^15.0.1",
-    "react-redux": "^9.1.2",
-    "react-router-dom": "^6.26.0",
+    "react-dom": "^19.0.0",
+    "react-i18next": "^15.4.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.1.1",
     "umi-request": "^1.4.0",
-    "unplugin-tailwindcss-mangle": "^4.0.1",
-    "use-immer": "^0.10.0"
+    "unplugin-tailwindcss-mangle": "^4.0.2",
+    "use-immer": "^0.11.0"
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.12",
-    "@types/node": "^22.3.0",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
+    "@types/node": "^22.10.5",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
     "@vitejs/plugin-react-swc": "^3.7.0",
     "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.41",
-    "tailwindcss": "^3.4.10",
-    "typescript": "^5.5.3",
-    "vite": "^5.4.0"
-  }
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7"
+  },
+  "description": "- MVVM 框架：React\r - 工程化管理：vite\r - UI 框架：antd\r - 路由管理：React-router\r - 状态管理：reduxjs/toolkit\r - 数据请求：umi-request\r - 国际化配置：react-i18next",
+  "homepage": "https://github.com/Design-duke/React-admin#readme",
+  "bugs": {
+    "url": "https://github.com/Design-duke/React-admin/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Design-duke/React-admin.git"
+  },
+  "license": "ISC",
+  "author": "MSA <m101299@yeah.net>",
+  "main": "postcss.config.js"
 }

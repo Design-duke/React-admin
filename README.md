@@ -2,10 +2,10 @@
 
 #### 主要技术栈
 
-- MVVM 框架：React 18
-- 工程化管理：vite v5
-- UI 框架：antd v5
-- 路由管理：React-router v6
+- MVVM 框架：React
+- 工程化管理：vite
+- UI 框架：antd
+- 路由管理：React-router
 - 状态管理：reduxjs/toolkit
 - 数据请求：umi-request
 - 国际化配置：react-i18next
