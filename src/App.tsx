@@ -6,7 +6,7 @@ import { RootState } from "./redux";
 import { ConfigProvider } from "antd";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { HashRouter } from "react-router-dom";
+import { HashRouter } from "react-router";
 
 function App() {
   const [i18nLocale, setI18nLocale] = useState(zhCN);

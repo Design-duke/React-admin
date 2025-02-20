@@ -2,7 +2,7 @@ import lazyLoad from "./lazyLoad";
 import Layout from "@/layout/index";
 import Login from "@/pages/Login/index";
 import { lazy } from "react";
-import { Navigate, useRoutes } from "react-router-dom";
+import { Navigate, useRoutes } from "react-router";
 
 export const routers: any = [
   {

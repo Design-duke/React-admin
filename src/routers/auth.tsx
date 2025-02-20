@@ -1,7 +1,7 @@
 import React from "react";
 import { routers } from "./index";
 import { searchRoute } from "@/utils/utils";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation } from "react-router";
 interface AuthRouterProps {
   children: React.ReactNode;
 }

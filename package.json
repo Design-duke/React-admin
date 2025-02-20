@@ -10,10 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@ant-design/icons": "^5.3.7",
+    "@ant-design/icons": "^5.6.1",
     "@reduxjs/toolkit": "^2.5.0",
     "@vitejs/plugin-react": "^4.3.1",
-    "antd": "^5.22.7",
+    "antd": "^5.24.1",
     "dayjs": "^1.11.13",
     "i18next": "^24.2.0",
     "less": "^4.2.1",
@@ -23,7 +23,7 @@
     "react-dom": "^19.0.0",
     "react-i18next": "^15.4.0",
     "react-redux": "^9.2.0",
-    "react-router-dom": "^7.1.1",
+    "react-router": "^7.2.0",
     "umi-request": "^1.4.0",
     "unplugin-tailwindcss-mangle": "^4.0.2",
     "use-immer": "^0.11.0"
@@ -38,7 +38,7 @@
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.2",
-    "vite": "^6.0.7"
+    "vite": "^6.1.1"
   },
   "description": "- MVVM 框架：React\r - 工程化管理：vite\r - UI 框架：antd\r - 路由管理：React-router\r - 状态管理：reduxjs/toolkit\r - 数据请求：umi-request\r - 国际化配置：react-i18next",
   "homepage": "https://github.com/Design-duke/React-admin#readme",
@@ -50,6 +50,5 @@
     "url": "git+https://github.com/Design-duke/React-admin.git"
   },
   "license": "ISC",
-  "author": "MSA <m101299@yeah.net>",
-  "main": "postcss.config.js"
+  "author": "MSA <m101299@yeah.net>"
 }

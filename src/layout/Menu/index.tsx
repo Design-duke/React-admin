@@ -2,7 +2,7 @@ import Items from "./item";
 import { Menu } from "antd";
 import * as Icons from "@ant-design/icons";
 import { getOpenKeys } from "@/utils/utils";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link } from "react-router";
 import React, { useEffect, useState } from "react";
 
 export default () => {

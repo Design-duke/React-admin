@@ -2,7 +2,7 @@ import Right from "./RightContent/index";
 import Menu from "./Menu/index";
 import { Button, Layout, theme } from "antd";
 import React, { useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router";
 import type { RootState } from "@/redux/index";
 import { useSelector, useDispatch } from "react-redux";
 import { setIsCollapse } from "@/redux/modules/collapsed";

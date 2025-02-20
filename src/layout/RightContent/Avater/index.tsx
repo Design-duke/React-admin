@@ -1,6 +1,6 @@
 import { Avatar, Dropdown } from "antd";
 import type { MenuProps } from "antd";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { LogoutOutlined } from "@ant-design/icons";
 import React from "react";
 
