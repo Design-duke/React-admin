@@ -1,7 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 /* 修改纵向滚动条的轨道（背景）样式 */
+@import "tailwindcss";
 ::-webkit-scrollbar {
   width: 8px; /* 宽度 */
   height: 8px; /* 高度 */
@@ -42,13 +40,6 @@
 /* 修改横向滚动条滑块在hover状态时的样式 */
 ::-webkit-scrollbar-thumb-horizontal:hover {
   background-color: rgb(178, 178, 178); /* 滑块背景颜色 */
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
 }
 
 @font-face {
@@ -119,21 +110,4 @@ body {
   height: 100%;
   overflow: hidden;
   background-color: #05080e;
-}
-
-svg {
-  display: inline-block;
-}
-
-.box-header-title {
-  font-family: YouSheBiaoTiHei, sans-serif;
-  font-size: 24px;
-  color: #fff;
-  letter-spacing: 1px;
-  font-weight: 400;
-  @include textGradient(#fff, #c5d7ff);
-}
-
-.title-text-gradient {
-  @include textGradient(#fff, #c5d7ff);
 }
