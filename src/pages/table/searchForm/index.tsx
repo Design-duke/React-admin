@@ -34,7 +34,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ search }) => {
   ];
 
   return (
-    <Card bordered={false}>
+    <Card>
       <Form layout="inline" onFinish={onFinish} onFinishFailed={onFinishFailed}>
         {formItems.map(({ label, name }) => (
           <Form.Item label={label} name={name} key={name}>

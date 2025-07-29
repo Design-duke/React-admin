@@ -44,51 +44,51 @@
 
 @font-face {
   font-family: DINAlternate-Bold;
-  src: url("/public/fonts/DIN-Alternate-Bold.ttf");
+  src: url("/fonts/DIN-Alternate-Bold.ttf");
 }
 
 @font-face {
   font-family: YouSheBiaoTiHei;
-  src: url("/public/fonts/YouSheBiaoTiHei.ttf");
+  src: url("/fonts/YouSheBiaoTiHei.ttf");
 }
 
 @font-face {
   font-family: PangMenZhengDao;
-  src: url("/public/fonts/PangMenZhengDaoBiao.ttf");
+  src: url("/fonts/PangMenZhengDaoBiao.ttf");
 }
 
 @font-face {
   font-family: Orbitron;
-  src: url("/public/fonts/Orbitron.ttf");
+  src: url("/fonts/Orbitron.ttf");
 }
 
 @font-face {
   font-family: PangMenZhengDaoBiao-2;
-  src: url("/public/fonts/PangMenZhengDaoBiaoTiTiMianFeiBan-2.ttf");
+  src: url("/fonts/PangMenZhengDaoBiaoTiTiMianFeiBan-2.ttf");
 }
 @font-face {
   font-family: "SHOUHUTYPE-BOLD";
-  src: url("/public/fonts/360shouhuType-Bold.otf");
+  src: url("/fonts/360shouhuType-Bold.otf");
 }
 
 @font-face {
   font-family: "SHOUHUTYPE-Regular";
-  src: url("/public/fonts/360shouhuType-Regular.otf");
+  src: url("/fonts/360shouhuType-Regular.otf");
 }
 
 @font-face {
   font-family: PingFangSC-Medium;
-  src: url("/public/fonts/pingfangsc-medium.otf");
+  src: url("/fonts/pingfangsc-medium.otf");
 }
 
 @font-face {
   font-family: PingFangSC-Regular;
-  src: url("/public/fonts/pingfangsc-regular.otf");
+  src: url("/fonts/pingfangsc-regular.otf");
 }
 
 @font-face {
   font-family: PingFangSC-Semibold;
-  src: url("/public/fonts/pingfangsc-semibold.otf");
+  src: url("/fonts/pingfangsc-semibold.otf");
 }
 
 body {

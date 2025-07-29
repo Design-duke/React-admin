@@ -1,6 +1,6 @@
 import ModelForm from "./Pop-ups/index";
 import SearchForm from "./searchForm/index";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { message, Table, Button, Popconfirm, Space } from "antd";
 import { useImmer } from "use-immer";
 import { useTranslation } from "react-i18next";
@@ -14,16 +14,20 @@ interface DataType {
   address: string;
 }
 
-// 定义ModelForm的引用类型
-interface ModalFormRef {
-  showModal: (initialValues: Partial<DataType>) => void;
-}
-
 const Tables: React.FC = () => {
   const { t } = useTranslation();
-  const modelFormRef = useRef<ModalFormRef | null>(null);
   const [messageApi, contextHolder] = message.useMessage();
   const [loading, setLoading] = useState(false);
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [editingRecord, setEditingRecord] = useState<DataType | null>(null);
+  const handleSave = (values: DataType) => {
+    console.log(values);
+    message.success("保存成功！");
+    setIsModalVisible(false);
+    setEditingRecord(null);
+  };
+
   const [dataSource, setDataSource] = useState<DataType[]>([
     {
       key: 1,
@@ -43,18 +47,17 @@ const Tables: React.FC = () => {
     pageSize: 10,
     total: 0,
   });
-
   // 操作栏处理函数
   const handleAction = (type: "edit" | "delete", record: DataType) => {
     if (type === "edit") {
-      modelFormRef.current?.showModal(record);
+      setEditingRecord(record);
+      setIsModalVisible(true);
     } else {
       const newData = dataSource.filter((item) => item.key !== record.key);
       setDataSource(newData);
       messageApi.success(t("Table.deleteSuccess"));
     }
   };
-
   // 分页变化时触发
   const handlePageChange = (page: number, pageSize: number) => {
     setPagination((draft) => {
@@ -63,7 +66,6 @@ const Tables: React.FC = () => {
     });
     fetchData({ pageNum: page, pageSize });
   };
-
   // 数据获取模拟函数，需替换为真实API调用
   const fetchData = async (params: any) => {
     setLoading(true);
@@ -121,7 +123,12 @@ const Tables: React.FC = () => {
         }}
         loading={loading}
       />
-      <ModelForm ref={modelFormRef} />
+      <ModelForm
+        visible={isModalVisible}
+        onCancel={() => setIsModalVisible(false)}
+        onSave={handleSave}
+        initialValues={editingRecord || undefined}
+      />
     </>
   );
 };

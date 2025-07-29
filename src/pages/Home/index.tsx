@@ -36,7 +36,7 @@ const Home: React.FC = () => {
           <Row gutter={16}>
             {cardTitle.map((item) => (
               <Col span={8} key={item.title}>
-                <Card title={item.title} bordered={false}>
+                <Card title={item.title}>
                   <Statistic
                     precision={2}
                     value={item.value}

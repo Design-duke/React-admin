@@ -1,54 +1,63 @@
 import { Modal, Form, Input } from "antd";
-import { useImperativeHandle, forwardRef, useState } from "react";
+import { useEffect } from "react";
 
-interface ModalFormData {
+const { TextArea } = Input;
+
+interface DataType {
   key: number;
   name: string;
   age: number;
   address: string;
 }
-
-interface ModalFormRef {
-  showModal: (initialValues: Partial<ModalFormData>) => void;
+interface ModelFormProps {
+  visible: boolean;
+  onCancel: () => void;
+  onSave: (values: any) => void;
+  initialValues?: Partial<DataType>;
 }
-
-const ModalForm = forwardRef<ModalFormRef>((_, ref) => {
-  const { TextArea } = Input;
+const ModalForm: React.FC<ModelFormProps> = ({
+  visible,
+  onCancel,
+  onSave,
+  initialValues,
+}) => {
   const layout = {
     labelCol: { span: 6 },
     wrapperCol: { span: 18 },
   };
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
 
-  const handleOk = () => {
-    setIsModalOpen(false);
-    form.submit();
+  const handleOk = async () => {
+    try {
+      const values = await form.validateFields();
+      onSave(values);
+      form.resetFields();
+    } catch (error) {
+      console.log("表单验证失败:", error);
+    }
   };
 
-  const handleCancel = () => {
-    setIsModalOpen(false);
+  const handleCancelWrapper = () => {
     form.resetFields();
+    onCancel();
   };
 
-  const showModal = (text: any) => {
-    setIsModalOpen(true);
-    setTimeout(() => {
-      form.setFieldsValue(text);
-    }, 100);
-  };
-
-  useImperativeHandle(ref, () => ({
-    showModal,
-  }));
+  useEffect(() => {
+    if (visible) {
+      form.resetFields(); // 先重置
+      if (initialValues) {
+        form.setFieldsValue(initialValues); // 设置初始值
+      }
+    }
+  }, [visible, initialValues, form]);
 
   return (
     <Modal
       title="Modal"
-      destroyOnClose
-      open={isModalOpen}
+      destroyOnHidden
+      open={visible}
       onOk={handleOk}
-      onCancel={handleCancel}
+      onCancel={handleCancelWrapper}
     >
       <Form
         name="modalForm"
@@ -87,6 +96,6 @@ const ModalForm = forwardRef<ModalFormRef>((_, ref) => {
       </Form>
     </Modal>
   );
-});
+};
 
 export default ModalForm;
