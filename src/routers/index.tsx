@@ -11,6 +11,11 @@ export const routers: any = [
   },
   { path: "login", element: <Login /> },
   {
+    path: "Three",
+    auth: true,
+    element: lazyLoad(lazy(() => import("@/pages/Three/ChinaMap"))),
+  },
+  {
     element: <Layout />,
     children: [
       {
