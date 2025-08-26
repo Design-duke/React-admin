@@ -128,7 +128,7 @@ const ChinaMap3D = () => {
 
             //  3. 创建 Mesh
             const extrudeSettings: THREE.ExtrudeGeometryOptions = {
-              depth: 1,
+              depth: 4,
               bevelEnabled: false,
             };
             const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
@@ -165,7 +165,7 @@ const ChinaMap3D = () => {
 
             // 创建边界线几何体
             const line = new THREE.Line(lineGeometry, lineMaterial);
-            line.position.z += 0.05;
+            line.position.z += 0.2;
 
             // 设置较高的renderOrder值，使得线条在渲染时位于大多数对象之上
             line.renderOrder = 2;
