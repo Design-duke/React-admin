@@ -13,7 +13,7 @@ export const routers: any = [
   {
     path: "Three",
     auth: true,
-    element: lazyLoad(lazy(() => import("@/pages/Three/ChinaMap"))),
+    element: lazyLoad(lazy(() => import("@/pages/Three/chinaMap/index"))),
   },
   {
     element: <Layout />,
