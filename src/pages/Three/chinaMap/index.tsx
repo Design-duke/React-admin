@@ -8,56 +8,7 @@ import {
   CSS2DObject,
 } from "three/examples/jsm/renderers/CSS2DRenderer.js";
 import * as d3 from "d3-geo";
-
-interface GeoJSONFeature {
-  type: "Feature";
-  properties: {
-    acroutes: number[];
-    adcode: number;
-    center: number[];
-    centroid: number[];
-    childrenNum: number;
-    level: string;
-    name: string;
-    parent: { adcode: number };
-    subFeatureIndex: number;
-    [key: string]: any;
-  };
-  geometry: {
-    type: "Polygon" | "MultiPolygon";
-    coordinates: number[][][] | number[][][][];
-  };
-}
-
-interface GeoJSONData {
-  type: "FeatureCollection";
-  features: GeoJSONFeature[];
-}
-
-const addMarkers = (scene: THREE.Scene, projection: any) => {
-  // 北京和上海的经纬度
-  const markers = [
-    { name: "Beijing", coords: [116.407396, 39.9042], color: 0xff0000 },
-    { name: "Shanghai", coords: [121.473701, 31.230416], color: 0x00ff00 },
-  ];
-
-  markers.forEach((item) => {
-    const projected = projection(item.coords);
-    if (projected) {
-      const [x, y] = projected;
-
-      // 创建一个简单的几何体作为标记
-      const geometry = new THREE.SphereGeometry(0.05, 32, 32); // 球体
-      const material = new THREE.MeshBasicMaterial({ color: item.color });
-      const sphere = new THREE.Mesh(geometry, material);
-
-      // 设置位置
-      sphere.position.set(x * 0.05, -y * 0.05, 0.1); // 提升一点高度避免被其他物体遮挡
-
-      scene.add(sphere);
-    }
-  });
-};
+import { GeoJSONData } from "./types/index";
 
 /**
  * 3D中国地图组件
@@ -65,17 +16,15 @@ const addMarkers = (scene: THREE.Scene, projection: any) => {
  * 包含省份填充、轮廓线、光照、相机控制等功能
  */
 const ChinaMap3D = () => {
-  // 创建一个ref，用于挂载Three.js的渲染容器
   const mountRef = useRef<HTMLDivElement | null>(null);
 
-  // useEffect在组件挂载后执行初始化逻辑
   useEffect(() => {
     const mount = mountRef.current;
     if (!mount) return;
 
-    // --- 1. 初始化Three.js基础场景 ---
+    // 添加场景
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x000000); // 设置黑色背景
+    scene.background = new THREE.Color(0x000000);
 
     // 创建透视相机
     const camera = new THREE.PerspectiveCamera(
@@ -97,14 +46,12 @@ const ChinaMap3D = () => {
     controls.enableDamping = true; // 启用阻尼效果，让控制更平滑
     controls.addEventListener("change", () => {});
 
-    // --- 2. 添加光照 ---
-    // 平行光，模拟太阳光
+    // 添加平行光，模拟太阳光
     const light = new THREE.DirectionalLight(0xffffff, 1);
     light.position.copy(
       camera.position.clone().add(new THREE.Vector3(2, 2, 1))
     );
     scene.add(light);
-    scene.add(new THREE.AmbientLight(0x404040));
     // 环境光，提供基础照明
     scene.add(new THREE.AmbientLight(0x404040));
 
@@ -112,7 +59,7 @@ const ChinaMap3D = () => {
     const axesHelper = new THREE.AxesHelper(5);
     scene.add(axesHelper);
 
-    // --- 3. 地图投影设置 ---
+    // 地图投影设置
     // 使用D3的墨卡托投影，将经纬度转换为平面坐标
     const projection = d3
       .geoMercator()
@@ -120,6 +67,7 @@ const ChinaMap3D = () => {
       .scale(80) // 缩放比例
       .translate([0, 0]); // 投影中心点
 
+    // 创建CSS2D渲染器，用于添加标签
     const labelRenderer = new CSS2DRenderer();
     labelRenderer.setSize(mount.clientWidth, mount.clientHeight);
     labelRenderer.domElement.style.position = "absolute";
@@ -127,7 +75,7 @@ const ChinaMap3D = () => {
     labelRenderer.domElement.style.pointerEvents = "none";
     document.body.appendChild(labelRenderer.domElement);
 
-    // --- 4. 加载地图数据 ---
+    //  加载地图数据
     fetch(
       "https://geo.datav.aliyun.com/areas_v3/bound/geojson?code=100000_full"
     )
@@ -150,7 +98,7 @@ const ChinaMap3D = () => {
           polygons.forEach((rings) => {
             if (!rings.length) return;
 
-            // --- 1. 创建一个 Shape（外轮廓） ---
+            //  1. 创建一个 Shape（外轮廓）
             const shape = new THREE.Shape();
             const outer = rings[0];
             // lng是经度，lat是纬度
@@ -163,7 +111,7 @@ const ChinaMap3D = () => {
               }
             });
 
-            // --- 2. 处理孔洞（holes） ---
+            //  2. 处理孔洞（holes）
             for (let j = 1; j < rings.length; j++) {
               const holeCoords = rings[j];
               const holePath = new THREE.Path();
@@ -178,7 +126,7 @@ const ChinaMap3D = () => {
               shape.holes.push(holePath);
             }
 
-            // --- 3. 创建 Mesh ---
+            //  3. 创建 Mesh
             const extrudeSettings: THREE.ExtrudeGeometryOptions = {
               depth: 1,
               bevelEnabled: false,
@@ -191,7 +139,7 @@ const ChinaMap3D = () => {
 
             provinceGroup.add(mesh);
 
-            // --- 4. 创建边界线 ---
+            //  4. 创建边界线
             const linePoints = (outer as [number, number][])
               .map(([lng, lat]) => {
                 const projected = projection([lng, lat]);
@@ -203,7 +151,6 @@ const ChinaMap3D = () => {
               })
               .filter((pt): pt is THREE.Vector3 => pt !== undefined);
 
-            // 假设linePoints已按前面的方式计算好
             const lineGeometry = new THREE.BufferGeometry().setFromPoints(
               linePoints
             );
@@ -228,7 +175,7 @@ const ChinaMap3D = () => {
 
           scene.add(provinceGroup);
 
-          // 添加名称
+          // 添加城市名称
           if (adcode === 100000 || !center) return;
 
           // 经纬度转坐标
@@ -256,7 +203,7 @@ const ChinaMap3D = () => {
       })
       .catch((err) => console.error("地图数据加载失败:", err));
 
-    // --- 8. 动画循环 ---
+    // 动画循环
     const animate = () => {
       requestAnimationFrame(animate);
       controls.update(); // 更新控制器
@@ -265,7 +212,7 @@ const ChinaMap3D = () => {
     };
     animate();
 
-    // --- 9. 清理函数 ---
+    // 清理函数
     return () => {
       // 组件卸载时清理资源
       mount.removeChild(renderer.domElement);

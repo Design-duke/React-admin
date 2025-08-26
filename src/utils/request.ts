@@ -1,12 +1,8 @@
-/**
- * request 网络请求工具
- * 更详细的 api 文档: https://github.com/umijs/umi-request
- */
-import { extend } from "umi-request";
 import { notification } from "antd";
-// import { history } from 'umi';
+
 const baseURL: any = import.meta.env.VITE_BASE_URL;
-const codeMessage: any = {
+
+const codeMessage: Record<number, string> = {
   200: "服务器成功返回请求的数据。",
   201: "新建或修改数据成功。",
   202: "一个请求已经进入后台排队（异步任务）。",
@@ -23,53 +19,75 @@ const codeMessage: any = {
   503: "服务不可用，服务器暂时过载或维护。",
   504: "网关超时。",
 };
+
 /**
- * 异常处理程序
+ * 异常处理函数
  */
-
 const errorHandler = (error: any) => {
-  const { response } = error;
-
-  if (response && response.status) {
-    const errorText = codeMessage[response.status] || response.statusText;
-    const { status, url } = response;
+  const { status, url } = error;
+  if (status) {
+    const errorText = codeMessage[status] || "未知错误";
     notification.error({
       message: `请求错误 ${status}: ${url}`,
       description: errorText,
     });
-  } else if (!response) {
+  } else {
     notification.error({
-      description: "您的网络发生异常，无法连接服务器",
       message: "网络异常",
+      description: "您的网络发生异常，无法连接服务器",
     });
   }
-
-  return response;
+  return Promise.reject(error);
 };
-/**
- * 配置request请求时的默认参数
- */
-const request = extend({
-  errorHandler,
-  // 默认错误处理
-  crossOrigin: true, // 开启CORS跨域
-  // 默认错误处理
-  // credentials: 'include', // 默认请求是否带上cookie
-  prefix: baseURL,
-});
 
-request.interceptors.request.use((url, options) => {
-  const newOptions = { ...options };
-  if (!(newOptions.data instanceof FormData)) {
-    newOptions.data = {
-      ...newOptions.data,
-    };
-  } else {
-  }
-  return {
-    url: `${url}`,
-    options: { ...newOptions },
+/**
+ * 统一封装 fetch 请求
+ */
+const request = async (url: string, options: RequestInit = {}) => {
+  const fullUrl = baseURL + url;
+
+  // 默认配置
+  const defaultOptions: RequestInit = {
+    method: "GET",
+    credentials: "include", // 根据需要决定是否携带 cookie
+    ...options,
   };
-});
+
+  // 处理请求数据
+  let newBody = options.body;
+  if (
+    !(options.body instanceof FormData) &&
+    typeof options.body === "object" &&
+    options.body !== null
+  ) {
+    // @ts-ignore
+    defaultOptions["Content-Type"] = "application/json";
+    newBody = JSON.stringify(options.body);
+  }
+
+  const fetchOptions: RequestInit = {
+    ...defaultOptions,
+    body: newBody as BodyInit,
+  };
+
+  try {
+    const response = await fetch(fullUrl, fetchOptions);
+
+    if (!response.ok) {
+      throw {
+        status: response.status,
+        url: fullUrl,
+      };
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error: any) {
+    return errorHandler({
+      status: error.status || 0,
+      url: fullUrl,
+    });
+  }
+};
 
 export default request;
