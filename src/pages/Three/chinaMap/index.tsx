@@ -7,7 +7,7 @@ import {
   CSS2DRenderer,
   CSS2DObject,
 } from "three/examples/jsm/renderers/CSS2DRenderer.js";
-import * as d3 from "d3-geo";
+import { geoMercator } from "d3-geo";
 import { GeoJSONData } from "./types/index";
 
 /**
@@ -61,8 +61,7 @@ const ChinaMap3D = () => {
 
     // 地图投影设置
     // 使用D3的墨卡托投影，将经纬度转换为平面坐标
-    const projection = d3
-      .geoMercator()
+    const projection = geoMercator()
       .center([105, 35]) // 中国地理中心
       .scale(80) // 缩放比例
       .translate([0, 0]); // 投影中心点
