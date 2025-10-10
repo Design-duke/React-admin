@@ -149,7 +149,7 @@ const ChinaMap3D = () => {
                 }
                 return undefined;
               })
-              .filter((pt): pt is THREE.Vector3 => pt !== undefined);
+              .filter(Boolean) as THREE.Vector3[];
 
             const lineGeometry = new THREE.BufferGeometry().setFromPoints(
               linePoints

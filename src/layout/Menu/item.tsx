@@ -6,10 +6,24 @@ const menu = [
     path: "/Home",
   },
   {
-    key: "/Three",
+    key: "/three",
     icon: "FacebookOutlined",
-    label: "Three",
-    path: "/Three",
+    label: "3D",
+    path: "/three",
+    children: [
+      {
+        key: "/three/china",
+        icon: "UserOutlined",
+        label: "中国地图",
+        path: "/three/china",
+      },
+      {
+        key: "/three/galaxy",
+        icon: "UploadOutlined",
+        label: "星系",
+        path: "/three/galaxy",
+      },
+    ],
   },
   {
     key: "/subOne",
