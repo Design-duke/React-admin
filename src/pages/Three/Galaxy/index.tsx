@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 // @ts-expect-error three类型错误
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { GUI } from "three/addons/libs/lil-gui.module.min.js";
+import { GUI } from "three/examples/jsm/libs/lil-gui.module.min.js";
 
 const Galaxy = () => {
   const mountRef = useRef<HTMLDivElement | null>(null);
@@ -42,14 +42,19 @@ const Galaxy = () => {
     if (!mount) return;
     // 添加场景
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x000000);
+    const textureLoader = new THREE.TextureLoader();
+    const backgroundTexture = textureLoader.load(
+      "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*M_OaRrzIZOEAAAAAAAAAAAAADmJ7AQ/original"
+    );
+    backgroundTexture.mapping = THREE.EquirectangularReflectionMapping;
+    scene.background = backgroundTexture;
 
     // 添加相机
     const camera = new THREE.PerspectiveCamera(
       75,
       window.innerWidth / window.innerHeight,
       0.1,
-      1000
+      2000
     );
     camera.position.set(0, 50, 0);
     camera.up.set(0, 0, 1);
@@ -67,12 +72,12 @@ const Galaxy = () => {
     controls.addEventListener("change", () => {});
 
     // 添加坐标轴
-    const axes = new THREE.AxesHelper(500);
-    scene.add(axes);
+    // const axes = new THREE.AxesHelper(500);
+    // scene.add(axes);
 
     // 添加灯光
-    const light = new THREE.PointLight(0xffffff, 500);
-    scene.add(light);
+    // const light = new THREE.PointLight(0xffffff, 500);
+    // scene.add(light);
 
     // 添加平行光
     // const light = new THREE.DirectionalLight(0xffffff, 0.5);
@@ -87,25 +92,36 @@ const Galaxy = () => {
 
     // 要更新旋转角度的对象数组
     const objects: THREE.Object3D<THREE.Object3DEventMap>[] = [];
+    const sunTexture = textureLoader.load(
+      "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*-mZfQr8LtPUAAAAAAAAAAAAADmJ7AQ/original"
+    );
+    const earthTexture = textureLoader.load(
+      "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*cdTdTI2bNl8AAAAAAAAAAAAADmJ7AQ/original"
+    );
+    const moonTexture = textureLoader.load(
+      "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*mniGTZktpecAAAAAAAAAAAAADmJ7AQ/original"
+    );
+
+    // 几何体（复用）
+    const sphereGeometry = new THREE.SphereGeometry(1, 32, 32); // 提高细分，贴图更平滑
 
     // 添加空场景 太阳系
     const solarSystem = new THREE.Object3D();
     scene.add(solarSystem);
     objects.push(solarSystem);
-    // 一球多用
-    const radius = 1;
-    const widthSegments = 6;
-    const heightSegments = 6;
+    // const radius = 1;
+    // const widthSegments = 6;
+    // const heightSegments = 6;
 
-    // 几何形状 定义物体的形状（顶点、面、法线等）。
-    const sphereGeometry = new THREE.SphereGeometry(
-      radius,
-      widthSegments,
-      heightSegments
-    );
+    // // 几何形状 定义物体的形状（顶点、面、法线等）。
+    // const sphereGeometry = new THREE.SphereGeometry(
+    //   radius,
+    //   widthSegments,
+    //   heightSegments
+    // );
 
     // 定义外观  定义物体表面的颜色、纹理、光泽度、光照反应等。
-    const sunMaterial = new THREE.MeshPhongMaterial({ emissive: 0xffff00 });
+    const sunMaterial = new THREE.MeshBasicMaterial({ map: sunTexture });
     const sunMesh = new THREE.Mesh(sphereGeometry, sunMaterial);
     sunMesh.scale.set(5, 5, 5);
     solarSystem.add(sunMesh);
@@ -118,10 +134,7 @@ const Galaxy = () => {
     objects.push(earthOrbit);
 
     // 添加地球
-    const earthMaterial = new THREE.MeshPhongMaterial({
-      color: 0x2233ff,
-      emissive: 0x112244,
-    });
+    const earthMaterial = new THREE.MeshBasicMaterial({ map: earthTexture });
     const earthMesh = new THREE.Mesh(sphereGeometry, earthMaterial);
     earthOrbit.add(earthMesh);
 
@@ -130,9 +143,8 @@ const Galaxy = () => {
     moonOrbit.position.x = 2;
     earthOrbit.add(moonOrbit);
 
-    const moonMaterial = new THREE.MeshPhongMaterial({
-      color: 0x888888,
-      emissive: 0x222222,
+    const moonMaterial = new THREE.MeshBasicMaterial({
+      map: moonTexture,
     });
     const moonMesh = new THREE.Mesh(sphereGeometry, moonMaterial);
     moonMesh.scale.set(0.5, 0.5, 0.5);
