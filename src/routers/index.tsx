@@ -21,6 +21,11 @@ export const routers: any = [
     element: lazyLoad(lazy(() => import("@/pages/Three/Galaxy/index"))),
   },
   {
+    path: "/three/light",
+    auth: true,
+    element: lazyLoad(lazy(() => import("@/pages/Three/Light/index"))),
+  },
+  {
     element: <Layout />,
     children: [
       {

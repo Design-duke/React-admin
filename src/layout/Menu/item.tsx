@@ -23,6 +23,12 @@ const menu = [
         label: "星系",
         path: "/three/galaxy",
       },
+      {
+        key: "/three/light",
+        icon: "UploadOutlined",
+        label: "光照",
+        path: "/three/light",
+      },
     ],
   },
   {
