@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   semi: true,                  // 语句结尾加分号
   singleQuote: false,           // 使用单引号
   jsxSingleQuote: false,       // JSX 中使用双引号（React 社区习惯）
