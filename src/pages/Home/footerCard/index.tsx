@@ -27,7 +27,7 @@ const FooterCard = () => {
                 <Statistic
                   title={item.title}
                   value={item.value}
-                  valueStyle={{ color: "#cf1322" }}
+                  styles={{ content: { color: "#cf1322" } }}
                 />
               </Card.Grid>
             ))}
@@ -40,7 +40,7 @@ const FooterCard = () => {
                 <Statistic
                   title={item.title}
                   value={item.value}
-                  valueStyle={{ color: "#cf1322" }}
+                  styles={{ content: { color: "#cf1322" } }}
                 />
               </Card.Grid>
             ))}

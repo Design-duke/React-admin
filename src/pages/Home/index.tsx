@@ -31,7 +31,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="bg-zinc-100 p-6">
-      <Space direction="vertical" size="middle" style={{ display: "flex" }}>
+      <Space orientation="vertical" size="middle" style={{ display: "flex" }}>
         <div className="p-5">
           <Row gutter={16}>
             {cardTitle.map((item) => (
