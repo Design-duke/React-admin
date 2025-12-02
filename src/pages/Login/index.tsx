@@ -22,7 +22,7 @@ function Login() {
         className="min-w-[328px] max-w-[500px] h-[60vh]"
         style={{ margin: "0 auto" }}
         initialValues={{
-          username: "admin", 
+          username: "admin",
           password: "12345",
           remember: true,
         }}

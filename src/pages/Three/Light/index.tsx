@@ -68,15 +68,29 @@ const Light = () => {
       // 加载纹理
       const textureLoader = new THREE.TextureLoader();
       const textures = [
-        textureLoader.load("http://gips2.baidu.com/it/u=2687682002,935161719&fm=3028&app=3028&f=JPEG&fmt=auto?w=1024&h=1024"),
-        textureLoader.load("http://gips1.baidu.com/it/u=1746086795,2510875842&fm=3028&app=3028&f=JPEG&fmt=auto?w=1024&h=1024"),
-        textureLoader.load("http://gips3.baidu.com/it/u=3419425165,837936650&fm=3028&app=3028&f=JPEG&fmt=auto?w=1024&h=1024"),
-        textureLoader.load("http://gips2.baidu.com/it/u=3944689179,983354166&fm=3028&app=3028&f=JPEG&fmt=auto?w=1024&h=1024"),
-        textureLoader.load("http://gips1.baidu.com/it/u=2205169440,1005663887&fm=3028&app=3028&f=JPEG&fmt=auto?w=1024&h=1024"),
-        textureLoader.load("http://gips2.baidu.com/it/u=4231193786,3187314859&fm=3028&app=3028&f=JPEG&fmt=auto?w=1024&h=1024"),
+        textureLoader.load(
+          "http://gips2.baidu.com/it/u=2687682002,935161719&fm=3028&app=3028&f=JPEG&fmt=auto?w=1024&h=1024"
+        ),
+        textureLoader.load(
+          "http://gips1.baidu.com/it/u=1746086795,2510875842&fm=3028&app=3028&f=JPEG&fmt=auto?w=1024&h=1024"
+        ),
+        textureLoader.load(
+          "http://gips3.baidu.com/it/u=3419425165,837936650&fm=3028&app=3028&f=JPEG&fmt=auto?w=1024&h=1024"
+        ),
+        textureLoader.load(
+          "http://gips2.baidu.com/it/u=3944689179,983354166&fm=3028&app=3028&f=JPEG&fmt=auto?w=1024&h=1024"
+        ),
+        textureLoader.load(
+          "http://gips1.baidu.com/it/u=2205169440,1005663887&fm=3028&app=3028&f=JPEG&fmt=auto?w=1024&h=1024"
+        ),
+        textureLoader.load(
+          "http://gips2.baidu.com/it/u=4231193786,3187314859&fm=3028&app=3028&f=JPEG&fmt=auto?w=1024&h=1024"
+        ),
       ];
       const cubeGeo = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
-      const materials = textures.map(texture => new THREE.MeshBasicMaterial({ map: texture }));
+      const materials = textures.map(
+        (texture) => new THREE.MeshBasicMaterial({ map: texture })
+      );
       const mesh = new THREE.Mesh(cubeGeo, materials);
       mesh.position.set(cubeSize + 1, 20, 0);
       scene.add(mesh);
