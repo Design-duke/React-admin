@@ -1,0 +1,50 @@
+{
+  "editor.mouseWheelZoom": true,
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.stickyScroll.enabled": false,
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "emmet.triggerExpansionOnTab": true,
+  "editor.tabCompletion": "on",
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "security.workspace.trust.untrustedFiles": "open",
+  "editor.wordWrap": "on",
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.tabSize": 2,
+  "[css]": {
+    "editor.defaultFormatter": null
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "git.autofetch": true,
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "files.autoSave": "onFocusChange",
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "vetur.experimental.templateInterpolationService": true,
+  "workbench.colorTheme": "Default Dark+",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "workbench.iconTheme": "vscode-icons",
+  "[less]": {
+    "editor.defaultFormatter": null
+  },
+  "stylelint.validate": ["css", "less"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": "explicit"
+  }
+}
