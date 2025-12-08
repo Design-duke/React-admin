@@ -2,31 +2,31 @@ const menu = [
   {
     key: "/Home",
     icon: "VideoCameraOutlined",
-    label: "Home",
+    i18nKey: "menu.home",
     path: "/Home",
   },
   {
     key: "/three",
     icon: "FacebookOutlined",
-    label: "3D",
+    i18nKey: "menu.three",
     path: "/three",
     children: [
       {
         key: "/three/china",
         icon: "UserOutlined",
-        label: "中国地图",
+        i18nKey: "menu.chinaMap",
         path: "/three/china",
       },
       {
         key: "/three/galaxy",
         icon: "UploadOutlined",
-        label: "星系",
+        i18nKey: "menu.galaxy",
         path: "/three/galaxy",
       },
       {
         key: "/three/light",
         icon: "UploadOutlined",
-        label: "光照",
+        i18nKey: "menu.lighting",
         path: "/three/light",
       },
     ],
@@ -34,24 +34,24 @@ const menu = [
   {
     key: "/subOne",
     icon: "UploadOutlined",
-    label: "Menu",
+    i18nKey: "menu.menu",
     children: [
       {
         key: "/subOne/count",
         icon: "UserOutlined",
-        label: "Count",
+        i18nKey: "menu.count",
         path: "/subOne/count",
       },
       {
         key: "/subOne/table",
         icon: "UploadOutlined",
-        label: "Table",
+        i18nKey: "menu.table",
         path: "/subOne/table",
       },
       {
         key: "/subOne/communication",
         icon: "UploadOutlined",
-        label: "Communication",
+        i18nKey: "menu.communication",
         path: "/subOne/communication",
       },
     ],
@@ -59,12 +59,12 @@ const menu = [
   {
     key: "/subTwo",
     icon: "AppstoreOutlined",
-    label: "Link",
+    i18nKey: "menu.link",
     children: [
       {
         key: "/subTwo/link",
         icon: "BugOutlined",
-        label: "GitHub地址",
+        i18nKey: "menu.githubLink",
         path: "/subTwo/link",
       },
     ],

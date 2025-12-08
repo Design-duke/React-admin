@@ -1,0 +1,13 @@
+export default {
+  home: "首页",
+  three: "3D",
+  chinaMap: "中国地图",
+  galaxy: "星系",
+  lighting: "光照",
+  menu: "菜单",
+  count: "计数",
+  table: "表格",
+  communication: "通信",
+  link: "链接",
+  githubLink: "GitHub地址",
+};

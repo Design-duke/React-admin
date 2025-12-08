@@ -1,0 +1,13 @@
+export default {
+  home: "Home",
+  three: "3D",
+  chinaMap: "China Map",
+  galaxy: "Galaxy",
+  lighting: "Lighting",
+  menu: "Menu",
+  count: "Count",
+  table: "Table",
+  communication: "Communication",
+  link: "Link",
+  githubLink: "GitHub Link",
+};
