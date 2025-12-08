@@ -60,5 +60,10 @@ export default defineConfig(({ command, mode }) => {
       },
     },
     plugins: [react(), tailwindcss()],
+    css: {
+      modules: {
+        localsConvention: "camelCase",
+      },
+    },
   };
 });

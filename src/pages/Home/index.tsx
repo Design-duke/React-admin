@@ -3,7 +3,10 @@ import { Card, Statistic, Space, Row, Col } from "antd";
 import React, { useEffect, useState } from "react";
 import CountUp from "react-countup";
 import FooterCard from "./footerCard/index";
+import Chart from "@/components/Chart/index";
+import type { EChartsOption } from "echarts";
 
+import styles from "./index.module.less";
 const Home: React.FC = () => {
   const [cardTitle, setCardTitle] = useState([
     {
@@ -27,6 +30,37 @@ const Home: React.FC = () => {
     <CountUp end={value} separator="," decimals={2} />
   );
 
+  const salesOption: EChartsOption = {
+    title: {
+      text: "近7日销售额趋势",
+      left: "center",
+    },
+    tooltip: { trigger: "axis" },
+    xAxis: {
+      type: "category",
+      data: ["周一", "周二", "周三", "周四", "周五", "周六", "周日"],
+    },
+    yAxis: {
+      type: "value",
+      splitLine: {
+        show: true,
+        lineStyle: {
+          type: "dashed",
+          color: "#e0e0e0",
+          width: 1,
+        },
+      },
+    },
+    series: [
+      {
+        name: "销售额",
+        type: "line",
+        data: [120, 200, 150, 300, 450, 600, 500],
+        smooth: true,
+      },
+    ],
+  };
+
   useEffect(() => {}, []);
 
   return (
@@ -49,6 +83,9 @@ const Home: React.FC = () => {
           </Row>
         </div>
         <FooterCard />
+        <div className={`${styles.chartContainer}`}>
+          <Chart option={salesOption} />
+        </div>
       </Space>
     </div>
   );
