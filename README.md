@@ -18,7 +18,6 @@
 - UI 框架：antd
 - 路由管理：React-router
 - 状态管理：reduxjs/toolkit
-- 数据请求：umi-request
 - 国际化配置：react-i18next
 
 ## 使用

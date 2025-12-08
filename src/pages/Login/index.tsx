@@ -4,22 +4,22 @@ import { LockOutlined, UserOutlined } from "@ant-design/icons";
 
 function Login() {
   const navigate = useNavigate();
-  const onFinish = async (values: any) => {
+  const onFinish = async (values: { username: string; password: string }) => {
     console.log("Received values of form: ", values);
     localStorage.setItem("Mm", "login");
     navigate("/Home");
   };
   return (
-    <div className="flex flex-col justify-center items-center h-[100vh] bg-[#f0f2f5] overflow-auto bg-[url(@/assets/loginBackGround.png)] bg-cover ">
-      <h1 className="m-0 font-semibold text-[33px] text-black/85">
+    <div className="flex h-screen flex-col items-center justify-center overflow-auto bg-[#f0f2f5] bg-[url(@/assets/loginBackGround.png)] bg-cover">
+      <h1 className="m-0 text-[33px] font-semibold text-black/85">
         Backend system
       </h1>
-      <h2 className="text-[#848587] text-[14px] mt-[12px] mb-[40px]">
+      <h2 className="mt-3 mb-10 text-[14px] text-[#848587]">
         西湖区最具影响力的 Web 设计规范
       </h2>
       <Form
         name="normal_login"
-        className="min-w-[328px] max-w-[500px] h-[60vh]"
+        className="h-[60vh] max-w-[500px] min-w-[328px]"
         style={{ margin: "0 auto" }}
         initialValues={{
           username: "admin",

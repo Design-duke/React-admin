@@ -4,7 +4,7 @@ import { Suspense } from "react";
 const lazyLoad = (Component: React.LazyExoticComponent<any>) => (
   <Suspense
     fallback={
-      <Spin size="large" className="flex items-center justify-center h-full" />
+      <Spin size="large" className="flex h-full items-center justify-center" />
     }
   >
     <Component />

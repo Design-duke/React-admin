@@ -1,4 +1,3 @@
-// src/components/charts/BaseChart.tsx
 import { useEffect, useRef, useCallback, useMemo } from "react";
 import type { CSSProperties, FC } from "react";
 import * as echarts from "echarts";
@@ -36,7 +35,7 @@ const BaseChart: FC<BaseChartProps> = ({
       chartInstance.current.hideLoading();
       chartInstance.current.setOption(option, true);
     }
-  }, [option, loading]); 
+  }, [option, loading]);
 
   // 使用 lodash-es 的 debounce 创建防抖函数
   const handleResize = useCallback(() => {

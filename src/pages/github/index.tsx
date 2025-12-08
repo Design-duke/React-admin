@@ -2,7 +2,7 @@ import React from "react";
 
 const Github: React.FC = () => {
   return (
-    <div className="flex flex-col items-center w-full h-full">
+    <div className="flex h-full w-full flex-col items-center">
       <p className="mt-12 mb-12 text-xl font-bold text-gray-800">
         Github 仓库：
         <a

@@ -22,15 +22,6 @@ const App: React.FC = () => {
   const setCollapsed = (value: boolean) => {
     dispatch(setIsCollapse(value));
   };
-  // 监听窗口大小变化
-  const listeningWindow = () => {
-    window.onresize = () =>
-      (() => {
-        let screenWidth = document.body.clientWidth;
-        if (!collapsed && screenWidth < 1200) dispatch(setIsCollapse(true));
-        if (!collapsed && screenWidth > 1200) dispatch(setIsCollapse(false));
-      })();
-  };
   // 监听窗口大小变化，并只在组件挂载和卸载时添加/移除监听器
   useEffect(() => {
     const handleResize = () => {

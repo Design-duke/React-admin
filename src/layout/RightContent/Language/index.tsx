@@ -30,7 +30,7 @@ const index = () => {
 
   return (
     <Dropdown menu={{ items, onClick }}>
-      <TranslationOutlined className="text-lg cursor-pointer px-3" />
+      <TranslationOutlined className="cursor-pointer px-3 text-lg" />
     </Dropdown>
   );
 };

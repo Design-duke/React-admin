@@ -30,8 +30,8 @@ const AvatarDropdown: React.FC = () => {
 
   return (
     <Dropdown menu={{ items, onClick }}>
-      <span className="flex items-center cursor-pointer px-3">
-        <Avatar size="small" className="mr-2 " src={AVATAR_URL} alt="avatar" />
+      <span className="flex cursor-pointer items-center px-3">
+        <Avatar size="small" className="mr-2" src={AVATAR_URL} alt="avatar" />
         <span>{USER_NAME}</span>
       </span>
     </Dropdown>

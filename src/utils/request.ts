@@ -30,11 +30,13 @@ const errorHandler = (error: any) => {
     notification.error({
       message: `请求错误 ${status}: ${url}`,
       description: errorText,
+      title: undefined
     });
   } else {
     notification.error({
       message: "网络异常",
       description: "您的网络发生异常，无法连接服务器",
+      title: undefined
     });
   }
   return Promise.reject(error);
