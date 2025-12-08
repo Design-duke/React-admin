@@ -15,7 +15,7 @@ export default defineConfig(({ command, mode }) => {
     server: {
       base: "./",
       host: true,
-      open: true,
+      open: false,
       hmr: true,
       proxy: {
         "/dev": {

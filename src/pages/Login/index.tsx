@@ -1,12 +1,17 @@
 import { useNavigate } from "react-router";
 import { Button, Form, Input } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { getRequestApi, postRequestApi } from "@/services";
 
 function Login() {
   const navigate = useNavigate();
   const onFinish = async (values: { username: string; password: string }) => {
     console.log("Received values of form: ", values);
     localStorage.setItem("Mm", "login");
+    // const formData = new FormData();
+    // formData.append("username", values.username);
+    // formData.append("password", values.password);
+    // const res = await postRequestApi(formData);
     navigate("/Home");
   };
   return (

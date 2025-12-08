@@ -1,6 +1,12 @@
 import { notification } from "antd";
 
-const baseURL: any = import.meta.env.VITE_BASE_URL;
+const baseURL = import.meta.env.VITE_BASE_URL;
+
+// 扩展请求选项类型，支持 params 和 data
+interface CustomRequestOptions extends Omit<RequestInit, "body"> {
+  params?: Record<string, any>;
+  data?: any;
+}
 
 const codeMessage: Record<number, string> = {
   200: "服务器成功返回请求的数据。",
@@ -30,50 +36,83 @@ const errorHandler = (error: any) => {
     notification.error({
       message: `请求错误 ${status}: ${url}`,
       description: errorText,
-      title: undefined
+      title: undefined,
     });
   } else {
     notification.error({
       message: "网络异常",
       description: "您的网络发生异常，无法连接服务器",
-      title: undefined
+      title: undefined,
     });
   }
   return Promise.reject(error);
 };
 
+const serializeParams = (params: Record<string, any>): string => {
+  const searchParams = new URLSearchParams();
+  Object.keys(params).forEach((key) => {
+    if (params[key] !== undefined && params[key] !== null) {
+      searchParams.append(key, String(params[key]));
+    }
+  });
+  return searchParams.toString();
+};
+
 /**
  * 统一封装 fetch 请求
  */
-const request = async (url: string, options: RequestInit = {}) => {
-  const fullUrl = baseURL + url;
+const request = async (url: string, options: CustomRequestOptions = {}) => {
+  const { params, data, ...fetchOptions } = options;
 
+  // 构建完整 URL
+  let fullUrl = baseURL + url;
+
+  // 处理 GET 请求的查询参数
+  if (params && Object.keys(params).length > 0) {
+    const queryString = serializeParams(params);
+    if (queryString) {
+      fullUrl += (fullUrl.includes("?") ? "&" : "?") + queryString;
+    }
+  }
+  const token = localStorage.getItem("token");
   // 默认配置
   const defaultOptions: RequestInit = {
     method: "GET",
-    credentials: "include", // 根据需要决定是否携带 cookie
-    ...options,
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+      ...(token && { Authorization: `Bearer ${token}` }),
+      ...fetchOptions.headers,
+    },
+    ...fetchOptions,
   };
 
   // 处理请求数据
-  let newBody = options.body;
-  if (
-    !(options.body instanceof FormData) &&
-    typeof options.body === "object" &&
-    options.body !== null
-  ) {
-    // @ts-ignore
-    defaultOptions["Content-Type"] = "application/json";
-    newBody = JSON.stringify(options.body);
+  let newBody: BodyInit | null = null;
+  if (data !== undefined && data !== null) {
+    // 如果是 FormData 则直接使用
+    if (data instanceof FormData) {
+      newBody = data;
+      // 删除 Content-Type，让浏览器自动设置
+      delete (defaultOptions.headers as Record<string, string>)["Content-Type"];
+    }
+    // 如果是普通对象或数组，转换为 JSON 字符串
+    else if (typeof data === "object") {
+      newBody = JSON.stringify(data);
+    }
+    // 其他情况直接使用
+    else {
+      newBody = String(data);
+    }
   }
 
-  const fetchOptions: RequestInit = {
+  const finalFetchOptions: RequestInit = {
     ...defaultOptions,
-    body: newBody as BodyInit,
+    body: newBody,
   };
 
   try {
-    const response = await fetch(fullUrl, fetchOptions);
+    const response = await fetch(fullUrl, finalFetchOptions);
 
     if (!response.ok) {
       throw {
@@ -82,8 +121,17 @@ const request = async (url: string, options: RequestInit = {}) => {
       };
     }
 
-    const data = await response.json();
-    return data;
+    const contentType = response.headers.get("content-type");
+    let resultData: any;
+
+    // 根据响应内容类型解析数据
+    if (contentType && contentType.includes("application/json")) {
+      resultData = await response.json();
+    } else {
+      resultData = await response.text();
+    }
+
+    return resultData;
   } catch (error: any) {
     return errorHandler({
       status: error.status || 0,
