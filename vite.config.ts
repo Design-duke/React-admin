@@ -19,7 +19,7 @@ export default defineConfig(({ command, mode }) => {
       hmr: true,
       proxy: {
         "/dev": {
-          target: "http://",
+          target: "http://localhost:3000",
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/dev/, ""),
         },

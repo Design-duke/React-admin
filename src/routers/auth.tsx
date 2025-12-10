@@ -2,6 +2,7 @@ import React from "react";
 import { routers } from "./index";
 import { searchRoute } from "@/utils/utils";
 import { Navigate, useLocation } from "react-router";
+import { getToken } from "@/utils/auth";
 interface AuthRouterProps {
   children: React.ReactNode;
 }
@@ -10,7 +11,7 @@ const AuthRouter: React.FC<AuthRouterProps> = ({ children }) => {
   const route = searchRoute(pathname, routers);
   if (!route.auth) return children;
 
-  const token = localStorage.getItem("Mm");
+  const token = getToken();
   if (!token) return <Navigate to={"/login"} replace />;
 
   return children;
