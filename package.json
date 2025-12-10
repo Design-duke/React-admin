@@ -2,6 +2,7 @@
   "name": "react-admin",
   "version": "1.0.0",
   "private": true,
+  "author": "design_duke@163.com",
   "type": "module",
   "scripts": {
     "start": "vite",
@@ -62,6 +63,5 @@
     "type": "git",
     "url": "git+https://github.com/design-duke/React-admin.git"
   },
-  "license": "ISC",
-  "author": "design_duke@163.com"
+  "license": "ISC"
 }

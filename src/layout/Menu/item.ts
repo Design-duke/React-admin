@@ -6,6 +6,12 @@ const menu = [
     path: "/Home",
   },
   {
+    key: "/products",
+    icon: "VideoCameraOutlined",
+    i18nKey: "menu.products",
+    path: "/products",
+  },
+  {
     key: "/three",
     icon: "FacebookOutlined",
     i18nKey: "menu.three",

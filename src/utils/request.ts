@@ -1,4 +1,5 @@
 import { notification } from "antd";
+import { getToken } from "../utils/auth";
 
 const baseURL = import.meta.env.VITE_BASE_URL;
 
@@ -74,14 +75,14 @@ const request = async (url: string, options: CustomRequestOptions = {}) => {
       fullUrl += (fullUrl.includes("?") ? "&" : "?") + queryString;
     }
   }
-  const token = localStorage.getItem("token");
+  const token = getToken();
   // 默认配置
   const defaultOptions: RequestInit = {
     method: "GET",
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
-      ...(token && { Authorization: `Bearer ${token}` }),
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
       ...fetchOptions.headers,
     },
     ...fetchOptions,

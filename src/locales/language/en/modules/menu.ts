@@ -10,4 +10,5 @@ export default {
   communication: "Communication",
   link: "Link",
   githubLink: "GitHub Link",
+  products: "Products Management",
 };

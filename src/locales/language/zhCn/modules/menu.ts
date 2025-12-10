@@ -10,4 +10,5 @@ export default {
   communication: "通信",
   link: "链接",
   githubLink: "GitHub地址",
+  products: "产品管理",
 };

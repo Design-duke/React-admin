@@ -34,6 +34,11 @@ export const routers: any = [
         element: lazyLoad(lazy(() => import("@/pages/Home/index"))),
       },
       {
+        path: "products",
+        auth: true,
+        element: lazyLoad(lazy(() => import("@/pages/products/index"))),
+      },
+      {
         path: "subOne/count",
         auth: true,
         element: lazyLoad(lazy(() => import("@/pages/reduxCount/index"))),
